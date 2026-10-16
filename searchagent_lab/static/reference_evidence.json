@@ -1,0 +1,154 @@
+{
+  "2WikiMQA:train_10028": [
+    {
+      "origin": "原始数据支持句",
+      "text": "Zazie dans le Métro, sometimes called\" Zazie\") is a 1960 French film directed by Louis Malle, based on the novel by Raymond Queneau.",
+      "title": "Zazie dans le Métro"
+    },
+    {
+      "origin": "原始数据支持句",
+      "text": "Blame It on Rio is a 1984 American romantic comedy film directed by Stanley Donen and written by Charlie Peters and Larry Gelbart based on the 1977 French film\" Un moment d'égarement\".",
+      "title": "Blame It on Rio"
+    },
+    {
+      "origin": "原始数据支持句",
+      "text": "Louis Marie Malle( 30 October 1932 – 23 November 1995) was a French film director, screenwriter and producer.",
+      "title": "Louis Malle"
+    },
+    {
+      "origin": "原始数据支持句",
+      "text": "Stanley Donen( April 13, 1924 – February 21, 2019) was an American film director and choreographer whose most celebrated works are\" On the Town\"( 1949) and\" Singin' in the Rain\"( 1952), both of which starred Gene Kelly who co-directed.",
+      "title": "Stanley Donen"
+    }
+  ],
+  "2WikiMQA:train_10401": [
+    {
+      "origin": "原始数据支持句",
+      "text": "\"I'm Old Fashioned\" is a 1942 song composed by Jerome Kern, with lyrics written by Johnny Mercer.",
+      "title": "I'm Old Fashioned"
+    },
+    {
+      "origin": "原始数据支持句",
+      "text": "Jerome David Kern (January 27, 1885 – November 11, 1945) was an American composer of musical theatre and popular music.",
+      "title": "Jerome Kern"
+    }
+  ],
+  "2WikiMQA:train_10436": [
+    {
+      "origin": "原始数据支持句",
+      "text": "Andriy Mykhailovych Bal(\" Andrey Mikhaylovich Bal\"; 16 February 1958 – 9 August 2014) was a Ukrainian football midfielder and coach.",
+      "title": "Andriy Bal"
+    },
+    {
+      "origin": "原始数据支持句",
+      "text": "Arthur Lazarus Jr.( August 30, 1926 – July 27, 2019) was an American attorney primarily known for his work with American Indian tribes and Alaska Native corporations.",
+      "title": "Arthur Lazarus Jr."
+    }
+  ],
+  "2WikiMQA:train_10758": [
+    {
+      "origin": "原始数据支持句",
+      "text": "Sikuru Hathe is a 2007 Sri Lankan Sinhala comedy film directed by Giriraj Kaushalya and produced by Hans Anton Vanstarex for New Imperial Talkies.",
+      "title": "Sikuru Hathe"
+    },
+    {
+      "origin": "原始数据支持句",
+      "text": "Thiruda Thiruda is a 1993 Indian Tamil language caper film directed by Mani Ratnam written along with Ram Gopal Varma.",
+      "title": "Thiruda Thiruda"
+    }
+  ],
+  "2WikiMQA:train_11335": [
+    {
+      "origin": "原始数据支持句",
+      "text": "She was the eldest daughter of Queen Isabella I of Jerusalem and Count Henry II of Champagne.",
+      "title": "Alice of Champagne"
+    },
+    {
+      "origin": "原始数据支持句",
+      "text": "She was the daughter of Amalric I of Jerusalem and his second wife Maria Comnena.",
+      "title": "Isabella I of Jerusalem"
+    }
+  ],
+  "2WikiMQA:train_3509": [
+    {
+      "origin": "原始数据支持句",
+      "text": "Constance of York, Countess of Gloucester (– 28 November 1416) was the only daughter of Edmund of Langley, 1st Duke of York and his wife Isabella of Castile, daughter of King Peter of Castile and his favourite mistress, María de Padilla.",
+      "title": "Constance of York, Countess of Gloucester"
+    },
+    {
+      "origin": "原始数据支持句",
+      "text": "Edmund of Langley, 1st Duke of York, KG (5 June 13411 August 1402) was the fourth surviving son of King Edward III of England and Philippa of Hainault.",
+      "title": "Edmund of Langley, 1st Duke of York"
+    }
+  ],
+  "MuSiQue:train_18590": [
+    {
+      "origin": "原始数据支持段落",
+      "text": "Han-era astronomers adopted a geocentric model of the universe, theorizing that it was shaped like a sphere surrounding the earth in the center. They assumed that the Sun, Moon, and planets were spherical and not disc-shaped. They also thought that the illumination of the Moon and planets was caused by sunlight, that lunar eclipses occurred when the Earth obstructed sunlight falling onto the Moon, and that a solar eclipse occurred when the Moon obstructed sunlight from reaching the Earth. Although others disagreed with his model, Wang Chong accurately described the water cycle of the evaporation of water into clouds.",
+      "title": "Han dynasty"
+    },
+    {
+      "origin": "原始数据支持段落",
+      "text": "Wang Chong (; 27 – c. 100 AD), courtesy name Zhongren (仲任), was a Chinese meteorologist, astronomer, and philosopher active during the Han Dynasty. He developed a rational, secular, naturalistic and mechanistic account of the world and of human beings and gave a materialistic explanation of the origin of the universe. His main work was the \"Lunheng\" (論衡, \"Critical Essays\"). This book contained many theories involving early sciences of astronomy and meteorology, and Wang Chong was even the first in Chinese history to mention the use of the square-pallet chain pump, which became common in irrigation and public works in China thereafter. Wang also accurately described the process of the water cycle.",
+      "title": "Wang Chong"
+    },
+    {
+      "origin": "原始数据支持段落",
+      "text": "The late Turrell V. Wylie, a former professor of the University of Washington, and Li Tieh-tseng argue that the reliability of the heavily censored History of Ming as a credible source on Sino-Tibetan relations is questionable, in the light of modern scholarship. Other historians also assert that these Ming titles were nominal and did not actually confer the authority that the earlier Yuan titles had. Van Praag writes that the \"numerous economically motivated Tibetan missions to the Ming Court are referred to as 'tributary missions' in the Ming Shih.\" Van Praag writes that these \"tributary missions\" were simply prompted by China's need for horses from Tibet, since a viable horse market in Mongol lands was closed as a result of incessant conflict. Morris Rossabi also writes that \"Tibet, which had extensive contacts with China during the Yuan, scarcely had diplomatic relations with the Ming.\"",
+      "title": "Sino-Tibetan relations during the Ming dynasty"
+    },
+    {
+      "origin": "原始数据支持段落",
+      "text": "Rawski writes that Altan Khan's conversion to the Gelug \"can be interpreted as an attempt to expand his authority in his conflict with his nominal superior, Tümen Khan.\" To further cement the Mongol-Tibetan alliance, the great-grandson of Altan Khan—the 4th Dalai Lama (1589–1616)—was made the fourth Dalai Lama. In 1642, the 5th Dalai Lama (1617–1682) became the first to wield effective political control over Tibet.",
+      "title": "Sino-Tibetan relations during the Ming dynasty"
+    }
+  ],
+  "MuSiQue:train_4948": [
+    {
+      "origin": "原始数据支持段落",
+      "text": "Morne Diablotins is the highest mountain in Dominica, an island-nation in the Caribbean Lesser Antilles. It is the second highest mountain in the Lesser Antilles, after La Grande Soufrière in Guadeloupe. Morne Diablotins is located in the northern interior of the island, about 15 miles north of Dominica's capital Roseau and about 6 miles southeast of Portsmouth, the island's second-largest town. It is located within Morne Diablotin National Park.",
+      "title": "Morne Diablotins"
+    },
+    {
+      "origin": "原始数据支持段落",
+      "text": "Dominica first competed at the Olympic Games in 1996, and has participated in each Games since then.  Dominica has yet to win any medals at the Olympic Games.",
+      "title": "Dominica at the Olympics"
+    }
+  ],
+  "TriviaQA:train_30096": [
+    {
+      "origin": "固定检索语料返回",
+      "text": "\"Ashford v Thornton\"\nAshford v Thornton Ashford v Thornton (1818) 106 ER 149 is an English law case in the Court of King's Bench which upheld the right of the defendant to trial by battle on a private appeal from an acquittal for murder. In 1817, Abraham Thornton was charged with the murder of Mary Ashford. Thornton had met Ashford at a dance and had walked with her from the event. The next morning, she was found drowned in a pit with little evidence of violence. Public opinion was heavily against Thornton, but the jury quickly acquitted him and found him not guilty",
+      "title": "Ashford v Thornton"
+    },
+    {
+      "origin": "固定检索语料返回",
+      "text": "\"Criminal appeal\"\ncrime, such as murder, rape or arson. An acquittal following an appeal prevented any further prosecution for the same offence (the doctrine of double jeopardy), just as if the proceedings had been brought by the crown (by indictment). The person bringing the appeal would be punished. Unlike crown prosecutions, if a person was convicted, the crown did not have the option of a pardon. Appeals were abolished in England following the 1817 case of Ashford v Thornton where an appeal was withdrawn following the defendant requesting a trial by battle. Criminal appeal A criminal appeal was a procedure in English",
+      "title": "Criminal appeal"
+    }
+  ],
+  "TriviaQA:train_50616": [
+    {
+      "origin": "固定检索语料返回",
+      "text": "\"Adam Werritty\"\nMoD's Permanent Secretary, Ursula Brennan and latterly the Cabinet Secretary Sir Gus O'Donnell. Fox claimed that Werrity had never worked for him either in an official or unofficial capacity despite allegations that he was using a source of advice outside the Civil Service, paid for by private funds. Disclosure of increasing amounts of detail of their contact, funding and explanations of their relationship led to Fox's resignation on 14 October 2011 in advance of O'Donnell's report of his investigation. Born in Kirkcaldy, Werrity was raised in St Andrews, Fife, and went to Madras College, where he played rugby in the",
+      "title": "Adam Werritty"
+    },
+    {
+      "origin": "固定检索语料返回",
+      "text": "\"Adam Werritty\"\nthat he had visited Fox in the Ministry of Defence Main Building on 22 occasions during a period of 16 months. In addition, Werrity was present on 18 overseas trips undertaken by Fox in the course of his duties as Secretary of State. On 10 October 2011 the MoD published a full list of Fox's meetings, from the beginning of his term in office (20 May 2010) to 8 October 2011, and it revealed that Werrity was present at 40 of Fox's 70 engagements in that period. His friendship with Liam Fox began in the late 1990s, when Fox was",
+      "title": "Adam Werritty"
+    }
+  ],
+  "TriviaQA:train_53959": [
+    {
+      "origin": "固定检索语料返回",
+      "text": "\"Gothic architecture\"\nthe tallest cathedral tower in France is Rouen Cathedral, and Cologne Cathedral (151.0 meters or 495 feet) is the tallest cathedral in Europe. The Gothic Old St Paul's Cathedral (1087–1314) had been the tallest cathedral in England until it was destroyed by the Great Fire of London in 1666. Today the tallest combined Gothic tower and spire in the UK belongs to Salisbury Cathedral, (123 meters or 404 feet), built 1220–1258. In Italy, the tower, if present, is almost always detached from the building, as at Florence Cathedral, and is often from an earlier structure. In France and Spain, two",
+      "title": "Gothic architecture"
+    },
+    {
+      "origin": "固定检索语料返回",
+      "text": "\"Amiens Cathedral\"\nAmiens Cathedral The Cathedral Basilica of Our Lady of Amiens (), or simply Amiens Cathedral, is a Roman Catholic church. The cathedral is the seat of the Bishop of Amiens. It is situated on a slight ridge overlooking the River Somme in Amiens, the administrative capital of the Picardy region of France, some north of Paris. Medieval cathedral builders were trying to maximize the internal dimensions in order to reach for the heavens and bring in more light. In that regard, the Amiens cathedral is the tallest complete cathedral in France, its stone-vaulted nave reaching an internal height of (surpassed",
+      "title": "Amiens Cathedral"
+    }
+  ]
+}

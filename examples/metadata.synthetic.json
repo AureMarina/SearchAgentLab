@@ -1,0 +1,33 @@
+{
+  "schema_version": 2,
+  "projects": [
+    {
+      "id": "example-latent",
+      "name": "Latent · 接入演示",
+      "demo": true
+    }
+  ],
+  "experiments": [
+    {
+      "id": "example-latent-e01",
+      "project_id": "example-latent",
+      "name": "E01 · 最小合成示例",
+      "objective": "验证 v2 归属与既有证据的导入；不验证模型效果",
+      "change": "无真实模型实验",
+      "constants": "静态合成 fixtures",
+      "demo": true
+    }
+  ],
+  "runs": [
+    {
+      "id": "example-run",
+      "name": "最小示例 · 合成数据",
+      "base_model": "No actual model loaded",
+      "algorithm": "Synthetic fixture",
+      "demo": true,
+      "experiment_id": "example-latent-e01",
+      "model_revision": "synthetic-ui-fixture-v2",
+      "seed": 42
+    }
+  ]
+}

@@ -1,0 +1,276 @@
+{
+  "retrieved_at_utc": "2026-10-10T16:28:28.053603+00:00",
+  "official_product_url": "https://tsanger.cn/product/362",
+  "official_download_url": "https://tsanger.cn/download/%E4%BB%93%E8%80%B3%E7%8E%89%E6%A5%B7.ttf",
+  "sha256": "3402a3a595edceb5f0cb69143be236807cff5d74382c3816635354f23e4e1a16",
+  "bytes": 4927040,
+  "names": [
+    {
+      "id": 1,
+      "platform": 1,
+      "lang": 0,
+      "value": "TsangerYuKai"
+    },
+    {
+      "id": 2,
+      "platform": 1,
+      "lang": 0,
+      "value": "Regular"
+    },
+    {
+      "id": 4,
+      "platform": 1,
+      "lang": 0,
+      "value": "TsangerYuKai Regular"
+    },
+    {
+      "id": 5,
+      "platform": 1,
+      "lang": 0,
+      "value": "Version 1.000"
+    },
+    {
+      "id": 6,
+      "platform": 1,
+      "lang": 0,
+      "value": "TsangerYuKai-Regular"
+    },
+    {
+      "id": 11,
+      "platform": 1,
+      "lang": 0,
+      "value": "http://tsanger.cn/"
+    },
+    {
+      "id": 0,
+      "platform": 3,
+      "lang": 1028,
+      "value": "Copyright © Beijing Tsanger Character Technology Co., Ltd.. All rights reserved."
+    },
+    {
+      "id": 1,
+      "platform": 3,
+      "lang": 1028,
+      "value": "TsangerYuKai"
+    },
+    {
+      "id": 2,
+      "platform": 3,
+      "lang": 1028,
+      "value": "Regular"
+    },
+    {
+      "id": 4,
+      "platform": 3,
+      "lang": 1028,
+      "value": "倉耳玉楷 標準"
+    },
+    {
+      "id": 16,
+      "platform": 3,
+      "lang": 1028,
+      "value": "倉耳玉楷"
+    },
+    {
+      "id": 17,
+      "platform": 3,
+      "lang": 1028,
+      "value": "標準"
+    },
+    {
+      "id": 0,
+      "platform": 3,
+      "lang": 1033,
+      "value": "Copyright © Beijing Tsanger Character Technology Co., Ltd.. All rights reserved."
+    },
+    {
+      "id": 1,
+      "platform": 3,
+      "lang": 1033,
+      "value": "TsangerYuKai"
+    },
+    {
+      "id": 2,
+      "platform": 3,
+      "lang": 1033,
+      "value": "Regular"
+    },
+    {
+      "id": 3,
+      "platform": 3,
+      "lang": 1033,
+      "value": "1.000;UKWN;TsangerYuKai-Regular"
+    },
+    {
+      "id": 4,
+      "platform": 3,
+      "lang": 1033,
+      "value": "TsangerYuKai Regular"
+    },
+    {
+      "id": 5,
+      "platform": 3,
+      "lang": 1033,
+      "value": "Version 1.000"
+    },
+    {
+      "id": 6,
+      "platform": 3,
+      "lang": 1033,
+      "value": "TsangerYuKai-Regular"
+    },
+    {
+      "id": 7,
+      "platform": 3,
+      "lang": 1033,
+      "value": "TsangerYuKai is a trademark of Beijing Tsanger Character Technology Co., Ltd."
+    },
+    {
+      "id": 8,
+      "platform": 3,
+      "lang": 1033,
+      "value": "Beijing Tsanger Character Technology Co., Ltd."
+    },
+    {
+      "id": 9,
+      "platform": 3,
+      "lang": 1033,
+      "value": "Beijing Tsanger Character Technology Co., Ltd."
+    },
+    {
+      "id": 11,
+      "platform": 3,
+      "lang": 1033,
+      "value": "http://tsanger.cn/"
+    },
+    {
+      "id": 13,
+      "platform": 3,
+      "lang": 1033,
+      "value": "Before using this font, you must be authorized by Beijing Tsanger Character Technology Co., Ltd."
+    },
+    {
+      "id": 16,
+      "platform": 3,
+      "lang": 1033,
+      "value": "TsangerYuKai"
+    },
+    {
+      "id": 17,
+      "platform": 3,
+      "lang": 1033,
+      "value": "Regular"
+    },
+    {
+      "id": 0,
+      "platform": 3,
+      "lang": 2052,
+      "value": "©北京仓耳文字技术有限公司。保留所有权利。"
+    },
+    {
+      "id": 1,
+      "platform": 3,
+      "lang": 2052,
+      "value": "TsangerYuKai"
+    },
+    {
+      "id": 2,
+      "platform": 3,
+      "lang": 2052,
+      "value": "Regular"
+    },
+    {
+      "id": 4,
+      "platform": 3,
+      "lang": 2052,
+      "value": "仓耳玉楷 标准"
+    },
+    {
+      "id": 8,
+      "platform": 3,
+      "lang": 2052,
+      "value": "北京仓耳文字技术有限公司"
+    },
+    {
+      "id": 9,
+      "platform": 3,
+      "lang": 2052,
+      "value": "北京仓耳文字技术有限公司"
+    },
+    {
+      "id": 13,
+      "platform": 3,
+      "lang": 2052,
+      "value": "无论您以何种方式使用该字体，您必须事先获得北京仓耳文字技术有限公司的正式书面许可。"
+    },
+    {
+      "id": 16,
+      "platform": 3,
+      "lang": 2052,
+      "value": "仓耳玉楷"
+    },
+    {
+      "id": 17,
+      "platform": 3,
+      "lang": 2052,
+      "value": "标准"
+    },
+    {
+      "id": 0,
+      "platform": 3,
+      "lang": 3076,
+      "value": "Copyright © Beijing Tsanger Character Technology Co., Ltd.. All rights reserved."
+    },
+    {
+      "id": 1,
+      "platform": 3,
+      "lang": 3076,
+      "value": "TsangerYuKai"
+    },
+    {
+      "id": 2,
+      "platform": 3,
+      "lang": 3076,
+      "value": "Regular"
+    },
+    {
+      "id": 4,
+      "platform": 3,
+      "lang": 3076,
+      "value": "倉耳玉楷 標準"
+    },
+    {
+      "id": 16,
+      "platform": 3,
+      "lang": 3076,
+      "value": "倉耳玉楷"
+    },
+    {
+      "id": 17,
+      "platform": 3,
+      "lang": 3076,
+      "value": "標準"
+    }
+  ],
+  "os2_fsType": 8,
+  "glyph_count": 7198,
+  "cmap_count": 7228,
+  "bundling_status": "not_bundled; official page permits free personal non-commercial use; redistribution/webfont embedding authorization not established",
+  "install_contract": {
+    "command": "python -m searchagent_lab setup-font --data-dir PATH [--font-file OFFICIAL_TTF]",
+    "workspace_path": "ui-fonts/TsangerYuKai-Regular.ttf",
+    "status_endpoint": "/api/ui/font",
+    "font_endpoint": "/fonts/TsangerYuKai-Regular.ttf",
+    "ordinary_serve_network_requests": false,
+    "database_mutations": false,
+    "font_binary_in_release": false,
+    "integrity": "Original bytes must match the official pinned SHA256 for download and --font-file."
+  },
+  "license_evidence": {
+    "official_page_personal_use_statement": "本站所有字体均可免费下载，允许个人非商业免费使用",
+    "official_page_has_separate_commercial_licensing": true,
+    "font_name13_requires_authorization": true,
+    "redistribution_permission_established": false,
+    "fsType_is_not_a_license_grant": true
+  }
+}

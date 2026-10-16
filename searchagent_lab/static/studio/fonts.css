@@ -1,0 +1,5 @@
+/* The original font is installed locally, separately from the source release.
+ * fonts.js loads the verified local face without blocking workspace content. */
+:root {
+  --font-ui: "SearchAgent YuKai", "仓耳玉楷", "倉耳玉楷", "TsangerYuKai", "PingFang SC", "Microsoft YaHei", sans-serif;
+}

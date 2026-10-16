@@ -1,0 +1,14 @@
+import assert from 'node:assert/strict';
+import {createAPI} from '../searchagent_lab/static/studio/request.js';
+let calls=0,time=0;const fetcher=async()=>({ok:true,status:200,json:async()=>({n:++calls,list:[1]})});
+const c=createAPI({fetcher,now:()=>time});
+const [a,b]=await Promise.all([c.api('session'),c.api('session')]);assert.equal(calls,1);a.list.push(2);assert.deepEqual(b.list,[1]);
+assert.equal((await c.api('session')).n,1);time=10001;await c.api('session');assert.equal(calls,2);
+await c.api('inspection/record');await c.api('inspection/record');assert.equal(calls,4);
+await c.api('save',{}, {method:'POST'});await c.api('session');assert.equal(calls,6);
+c.clear();await c.api('session');assert.equal(calls,7);
+let release,ids=0;const stale=createAPI({fetcher:()=>new Promise(resolve=>{const n=++ids;if(n===1)release=()=>resolve({ok:true,json:async()=>({n})});else resolve({ok:true,json:async()=>({n})});})});
+const pending=stale.api('session');stale.clear();assert.equal((await stale.api('session')).n,2);release();await pending;assert.equal((await stale.api('session')).n,2);
+let unauthorized=0;const denied=createAPI({fetcher:async()=>({ok:false,status:401,json:async()=>({})}),onUnauthorized:()=>unauthorized++});await assert.rejects(denied.api('session'));assert.equal(unauthorized,1);
+let fails=0;const retry=createAPI({fetcher:async()=>({ok:++fails>1,status:500,json:async()=>({error:'test'})})});await assert.rejects(retry.api('session'));await retry.api('session');assert.equal(fails,2);
+console.log('PASS: coalescing, TTL, clone isolation, no trace cache, mutation invalidation, refresh, stale-generation protection, 401 and retry');

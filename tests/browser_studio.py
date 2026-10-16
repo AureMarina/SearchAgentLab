@@ -1,0 +1,100 @@
+"""End-to-end UI checks with actual store/HTTP APIs. Synthetic fixtures only."""
+import sys,json,tempfile,threading,urllib.request
+from pathlib import Path
+ROOT=Path(__file__).resolve().parents[1];sys.path[:0]=[str(ROOT),str(ROOT/'tests'),str(ROOT/'examples')]
+from bridge_studio import load
+from seed_studio_demo import seed
+from searchagent_lab.studio.sdk import StudioRecorder
+from searchagent_lab.server import LabServer
+from playwright.sync_api import sync_playwright
+
+def main():
+ checks=[];errors=[];shots=ROOT/'docs/v081/screenshots/studio';shots.mkdir(parents=True,exist_ok=True)
+ def check(name,val):
+  if not val:raise AssertionError(name)
+  checks.append({'name':name,'passed':True});print('PASS',name,flush=True)
+ with tempfile.TemporaryDirectory() as tmp:
+  seed(tmp)
+  with StudioRecorder(tmp) as rec:
+   server=LabServer(('127.0.0.1',0),rec.store);threading.Thread(target=server.serve_forever,daemon=True).start();base='http://127.0.0.1:'+str(server.server_address[1])
+   try:
+    with sync_playwright() as p:
+     b=p.chromium.launch(executable_path='/usr/bin/chromium',headless=True,args=['--no-sandbox'])
+     native=b.new_page();native_error=''
+     try:native.goto(base,timeout=5000);native.wait_for_selector('#s-app',timeout=2000)
+     except Exception as e:native_error=str(e).splitlines()[0]
+     native.close()
+     page=load(b,base,'#/training?project=studio-selfplay&track=main&run=studio-run&panel=studio-synthetic-11&cp=studio-run-cp100',errors)
+     page.wait_for_selector('[data-cp="studio-run-cp100"]');page.wait_for_timeout(250)
+     check('four primary navigation items, training visible',page.locator('#s-nav a').count()==4 and page.locator('#s-nav a.active').inner_text().endswith('训练动态'))
+     check('no default chat or review textarea',page.locator('textarea:visible').count()==0)
+     check('three separate charts',page.locator('.s-chart').count()==3)
+     check('validation shows discrete checkpoint dots only',page.locator('.s-chart').nth(2).locator('circle').count()==4 and page.locator('.s-chart').nth(2).locator('path').count()==0)
+     check('fixed questions remain eleven',page.locator('tr[data-question]').count()==11)
+     check('fixed denominator and score counts','5/11' in page.locator('[data-cp="studio-run-cp0"]').inner_text() and '7/11' in page.locator('[data-cp="studio-run-cp100"]').inner_text())
+     check('main run dropdown excludes reproduction','studio-repro-run' not in page.get_by_label('训练运行',exact=True).inner_text())
+     check('original negative loss axis displayed','-0.0' in page.locator('.s-chart').first.inner_text())
+     page.locator('[data-filter="rescued"]').click();check('rescued filter maps real paired outcomes',page.locator('tr[data-question]').count()==2)
+     check('filtered table footer keeps full denominator','11 道固定题' in page.locator('tfoot').inner_text())
+     page.locator('[data-filter="harmed"]').click();check('regression filter works',page.locator('tr[data-question]').count()==1)
+     page.locator('[data-filter="all"]').click()
+     page.get_by_label('checkpoint 对照方式').select_option('initial');page.wait_for_function("document.querySelector('[data-cp=\"studio-run-cp100\"]').textContent.includes('↑ 4 题')")
+     check('explicit initial-vs-previous reference changes counts','↓ 2 题' in page.locator('[data-cp="studio-run-cp100"]').inner_text())
+     page.get_by_label('checkpoint 对照方式').select_option('previous');page.wait_for_timeout(250)
+     page.get_by_role('button',name='项目专属指标',exact=True).click();check('project metric added without mixing units',page.locator('.s-chart').count()==4)
+     page.get_by_role('button',name='通用指标',exact=True).click()
+     page.get_by_role('button',name='查看 batch → rollout group → reward / advantage / mask ↗').click();page.wait_for_selector('#s-modal[open]')
+     page.locator('#s-modal summary').first.click();check('batch shows real group reward and advantage','0.5' in page.locator('#s-modal').inner_text())
+     check('training token mask recorded, not inferred','5 tokens' in page.locator('#s-modal').inner_text())
+     page.locator('#s-modal-close').click()
+     page.screenshot(path=str(shots/'01_training_dynamics.png'),full_page=True)
+     page.locator('.s-selected-col .s-result-link').nth(7).click();page.wait_for_selector('.s-step-item');page.wait_for_timeout(250)
+     check('matrix cell opens matching question and checkpoint','SYN-08' in page.locator('.s-replay-meta').inner_text() and 'checkpoint-100' in page.locator('.s-replay-meta').inner_text())
+     check('step replay has left list / center / result sidebar',page.locator('.s-replay-grid > section').count()==3)
+     check('no always-on diagnosis counters or manual review form',page.locator('.ix-diagnostic-counts').count()==0 and page.locator('textarea:visible').count()==0)
+     page.locator('[data-step="1"]').click();check('step navigation shows actual tool and visible observation','工具完整返回' in page.locator('.s-replay-body').inner_text() and '模型实际可见内容' in page.locator('.s-replay-body').inner_text())
+     page.locator('[data-json-pointer="/steps/1/tool_call/arguments"] > summary').click();check('nested tool fields expand independently',page.locator('[data-json-pointer="/steps/1/tool_call/arguments"]').get_attribute('open') is not None)
+     page.locator('[data-json-pointer="/steps/1/tool_response/documents"] > summary').click();page.locator('[data-json-pointer="/steps/1/tool_response/documents/0"] > summary').click();page.locator('[data-json-pointer="/steps/1/tool_response/documents/0/text"] > summary').click()
+     page.screenshot(path=str(shots/'02_trajectory_replay.png'),full_page=True)
+     page.get_by_role('button',name='折叠',exact=True).click();check('all rendered JSON fields collapse',page.locator('.s-replay-body details[open]').count()==0)
+     page.fill('#s-trace-search','hidden_signal_8472');page.press('#s-trace-search','Enter');page.wait_for_selector('.s-replay-body mark');check('search finds collapsed raw return and highlights','hidden_signal_8472' in page.locator('.s-replay-body mark').inner_text())
+     check('search selects correct evidence step',page.locator('[data-step="1"]').get_attribute('class').endswith('active'))
+     page.get_by_role('button',name='全部步骤',exact=True).click();page.wait_for_selector('.ix-step');check('full Episode-Trajectory-Step folds retained',page.locator('.ix-step').count()==5)
+     page.locator('.ix-step > summary').first.click();page.wait_for_timeout(100);check('individual full-trace step expands',page.locator('.ix-step[open]').count()>=1)
+     page.get_by_role('button',name='打开检查工具（按需）',exact=True).click();page.wait_for_selector('#s-modal[open]');check('diagnostic review only appears on demand',page.locator('#s-modal textarea').count()==1);page.locator('#s-modal-close').click()
+     page.get_by_role('link',name='返回训练 / 报告',exact=True).click();page.wait_for_selector('[data-cp]');check('return retains run panel checkpoint',page.locator('[data-cp="studio-run-cp100"]').get_attribute('class')=='selected')
+     page.locator('[data-cp="studio-run-cp100"]').get_by_role('link',name='查看报告 ↗').click();page.wait_for_selector('.s-report-cards')
+     check('report compares explicitly selected two evaluations','修复 2 · 退化 1' in page.locator('.s-report-cards').inner_text())
+     check('report full fixed question rows',page.locator('[data-report-filter="all"]').inner_text()=='全部 (11)')
+     page.locator('[data-report-filter="rescued"]').click();check('report rescued filter uses two records','SYN-08' in page.locator('#s-app').inner_text());page.locator('[data-report-filter="all"]').click()
+     page.screenshot(path=str(shots/'03_evaluation_report.png'),full_page=True)
+     page.get_by_role('link',name='B ↗',exact=True).nth(7).click();page.wait_for_selector('.s-step-item');page.get_by_role('button',name='同题对照',exact=True).click();page.wait_for_selector('.s-trace-compare');check('same-question A/B both retain independent step trees',page.locator('.s-trace-compare .ix-step').count()==10)
+     page.get_by_role('link',name='返回训练 / 报告',exact=True).click();page.wait_for_selector('.s-report-cards')
+     page.get_by_role('button',name='保存报告快照',exact=True).click();page.locator('#s-modal').get_by_role('button',name='保存只读快照').click();page.wait_for_selector('.s-notice:has-text("已冻结报告快照")');check('frozen report persisted actual snapshot',rec.repo.conn.execute('SELECT count(*) FROM saved_reports').fetchone()[0]==1)
+     page.locator('#s-nav [data-page="experiments"]').click();page.wait_for_selector('[data-track="reproduction"]');check('main experiment list excludes Dr.Zero','Dr.Zero' not in page.locator('#s-app').inner_text())
+     page.locator('[data-track="reproduction"]').click();page.wait_for_function("document.querySelector('h1')?.textContent==='文献复现'");check('reproduction tab excludes main experiments','E03' not in page.locator('#s-app').inner_text() and 'Dr.Zero' in page.locator('#s-app').inner_text())
+     check('reproduction explicitly excluded from iteration','不自动纳入主实验迭代' in page.locator('#s-app').inner_text())
+     page.get_by_role('link',name='实验详情',exact=True).click();page.get_by_role('button',name='实验设计 / 复现档案',exact=True).click();page.get_by_role('button',name='展开论文、代码、适配与目标记录',exact=True).click();check('reproduction details have paper/code/adaptation metadata','reproduction' not in page.locator('#s-modal-title').inner_text() and '原始复现元数据' in page.locator('#s-modal-title').inner_text());page.locator('#s-modal-close').click()
+     page.screenshot(path=str(shots/'04_reproduction_archive.png'),full_page=True)
+     page.locator('[data-view="training"]').click();page.wait_for_selector('[data-cp="studio-repro-run-cp100"]');check('same dynamics works for reproduction','复现内部' in page.locator('#s-app').inner_text() or '不参与主实验迭代' in page.locator('#s-app').inner_text())
+     check('reproduction run has its own checkpoints only',page.locator('[data-cp]').count()==2)
+     page.screenshot(path=str(shots/'05_reproduction_dynamics.png'),full_page=True)
+     page.locator('[data-cp="studio-repro-run-cp100"]').get_by_role('link',name='查看报告 ↗').click();page.wait_for_selector('.s-report-cards');check('report delta explicitly reproduction-internal','复现内部 checkpoint 变化' in page.locator('#s-app').inner_text())
+     page.locator('#s-nav [data-page="versions"]').click();page.wait_for_selector('#s-panels');page.get_by_role('button',name='查看题目与答案',exact=True).click();page.wait_for_function("document.querySelector('#s-modal').open && document.querySelector('#s-modal').textContent.includes('SYN-11')");check('groundtruth available independent of training context','SYN-11' in page.locator('#s-modal').inner_text());page.locator('#s-modal-close').click()
+     page.set_input_files('#s-file',str(ROOT/'examples/inspection_demo.jsonl'));page.wait_for_selector('.s-step-item');page.get_by_role('button',name='题目列表',exact=True).click();check('direct JSONL file remains independent, six rows including invalid',page.locator('.s-record-item').count()==6)
+     page.fill('#s-trace-search','array_tail_317');page.press('#s-trace-search','Enter');page.wait_for_selector('.s-replay-body mark');check('search lazy large array not just visible DOM','array_tail_317' in page.locator('.s-replay-body mark').inner_text())
+     page.fill('#s-trace-search','<img');page.press('#s-trace-search','Enter');page.wait_for_timeout(200);check('raw log markup does not execute',page.locator('.s-replay-body img,.s-replay-body script').count()==0)
+     page.locator('.s-record-item').nth(5).click();page.wait_for_timeout(200);check('invalid JSON line shown not dropped','解析错误' in page.locator('.s-replay-meta').inner_text())
+     page.set_input_files('#s-file',str(ROOT/'examples/methods/skillbank_v1.synthetic.json'));page.wait_for_selector('#mx-skill-detail',timeout=15000);check('direct SkillBank opens standalone without fake experiment',page.locator('#mx-project').input_value()=='')
+     check('skill snapshot content preserved','适用条件' in page.locator('#mx-skill-detail').inner_text())
+     page.evaluate("location.hash='#/training?project=studio-entropy&track=main&panel=studio-synthetic-11'");page.wait_for_selector('.s-chart');page.wait_for_function("document.querySelector('#s-app').textContent.includes('尚未登记本实验的训练运行')")
+     check('no training does not hide actual Groundtruth',page.get_by_role('button',name='查看参考',exact=True).count()==11 and page.locator('.s-chart').count()==3)
+     check('empty project does not fabricate checkpoint results',page.locator('[data-cp]').count()==0)
+     # Main-method deep link keeps originating run and allows step expansion.
+     page.evaluate("location.hash='#/methods?project_id=studio-selfplay&experiment_id=studio-e03&run_id=studio-run&id=studio-cycle03&track=main'");page.wait_for_selector('.mx-question-card');check('Self-play method process preserved','A 出题' in page.locator('.mx-main').inner_text() and 'B' in page.locator('.mx-main').inner_text())
+     page.screenshot(path=str(shots/'06_method_process.png'),full_page=True)
+     check('no JavaScript runtime errors',not errors)
+     b.close()
+   finally:server.shutdown();server.server_close()
+ (ROOT/'docs/v081/browser-studio.json').write_text(json.dumps({'mode':'static_module_real_HTTP_bridge','native_navigation_error':native_error,'count':len(checks),'checks':checks,'errors':errors},ensure_ascii=False,indent=2));print('PASSED',len(checks),'browser checks')
+if __name__=='__main__':main()

@@ -1,0 +1,57 @@
+{
+  "id": "example-panel",
+  "name": "最小接入示例",
+  "version": "v1",
+  "split": "dev",
+  "demo": true,
+  "samples": [
+    {
+      "id": "synthetic-001",
+      "dataset": "HotpotQA",
+      "question": "In which city was the author of The Amber Tide 01 born?",
+      "answers": [
+        "Harborwick"
+      ],
+      "metadata": {
+        "synthetic": true,
+        "title": "The Amber Tide 01",
+        "author": "Mira Vale 01",
+        "city": "Harborwick",
+        "country": "Norland",
+        "hops": 2,
+        "reference_evidence": [
+          "The Amber Tide 01 was written by Mira Vale 01.",
+          "Mira Vale 01 was born in Harborwick.",
+          "Harborwick is located in Norland."
+        ],
+        "source_id": "synthetic-001",
+        "source_revision": "synthetic-ui-fixture-v2",
+        "source_split": "synthetic-no-benchmark-split"
+      }
+    },
+    {
+      "id": "synthetic-002",
+      "dataset": "MuSiQue",
+      "question": "Which country contains the birthplace of the author of Winter at Luma 02?",
+      "answers": [
+        "Veloria"
+      ],
+      "metadata": {
+        "synthetic": true,
+        "title": "Winter at Luma 02",
+        "author": "Nolan Finch 02",
+        "city": "Stoneharbor",
+        "country": "Veloria",
+        "hops": 3,
+        "reference_evidence": [
+          "Winter at Luma 02 was written by Nolan Finch 02.",
+          "Nolan Finch 02 was born in Stoneharbor.",
+          "Stoneharbor is located in Veloria."
+        ],
+        "source_id": "synthetic-002",
+        "source_revision": "synthetic-ui-fixture-v2",
+        "source_split": "synthetic-no-benchmark-split"
+      }
+    }
+  ]
+}

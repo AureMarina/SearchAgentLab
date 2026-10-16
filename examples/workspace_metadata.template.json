@@ -1,0 +1,20 @@
+{
+  "schema_version": 2,
+  "description": "Only empty research project metadata; no runs, questions, training records or results. Edit before first import.",
+  "projects": [
+    {
+      "id": "self-play",
+      "name": "Self-play"
+    },
+    {
+      "id": "latent",
+      "name": "Latent"
+    },
+    {
+      "id": "entropy",
+      "name": "Entropy"
+    }
+  ],
+  "experiments": [],
+  "runs": []
+}

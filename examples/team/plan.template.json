@@ -1,0 +1,14 @@
+{
+  "plan_schema": "searchagent-lab.plan/v1",
+  "project": {"id": "latent", "name": "Latent", "metric_definitions": {}},
+  "experiment": {
+    "id": "latent-e02", "project_id": "latent", "name": "E02 · Persistent latent",
+    "objective": "替换为本次真实研究问题", "config": {}
+  },
+  "profile": {
+    "experiment_id": "latent-e02", "track": "main", "kind": "agent_iteration",
+    "question": "替换为本次真实研究问题", "change": "填写实际改动",
+    "constants": "填写保持不变的模型、检索、题单与评分协议", "binding_origin": "prospective"
+  },
+  "panels": []
+}

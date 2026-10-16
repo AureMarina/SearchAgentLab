@@ -1,0 +1,9 @@
+{
+  "experiment_id": "REPLACE_WITH_EXISTING_EXPERIMENT_ID",
+  "track": "main",
+  "kind": "agent_iteration",
+  "question": "填写本轮研究问题",
+  "change": "填写实际改动",
+  "constants": "填写保持条件",
+  "binding_origin": "retrospective"
+}

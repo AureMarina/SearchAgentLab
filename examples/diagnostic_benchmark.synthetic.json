@@ -1,0 +1,239 @@
+{
+  "ruleset": "trace-evidence-v1",
+  "cases": [
+    {
+      "id": "1",
+      "rule": "parser_mismatch",
+      "label": "positive",
+      "label_source": "injected_fault",
+      "raw": {
+        "id": "fixture-1",
+        "dataset": "SYNTHETIC",
+        "question": "Synthetic fictional workplace?",
+        "gold_answers": [
+          "Copper Harbor"
+        ],
+        "demo": true,
+        "trace_complete": true,
+        "scores": {
+          "em": 0
+        },
+        "raw_final_output": "<answer>Copper Harbor</answer>",
+        "parsed_answer": "Other Place",
+        "runtime_status": "ok",
+        "execution_context": {
+          "checkpoint_id": "fixture-cp",
+          "weights_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "base_model": "synthetic",
+          "model_revision": "fixture-v1",
+          "panel_hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+          "prompt": {
+            "version": "p1"
+          },
+          "chat_template": {
+            "version": "t1"
+          },
+          "tokenizer": {
+            "version": "t1"
+          },
+          "tool_schema": {
+            "version": "s1"
+          },
+          "retriever": {
+            "snapshot": "synthetic"
+          },
+          "context_builder": {
+            "version": "v1"
+          },
+          "parser": {
+            "version": "p1"
+          },
+          "scorer": {
+            "version": "s1"
+          },
+          "budget": {
+            "max_search": 4
+          },
+          "decoding": {
+            "temperature": 0
+          },
+          "seed": 42,
+          "runtime": {
+            "version": "fixture-runtime"
+          },
+          "state_reset": {
+            "per_question": true
+          },
+          "harness_version": "fixture"
+        },
+        "steps": [
+          {
+            "index": 0,
+            "kind": "model",
+            "input": [
+              {
+                "role": "user",
+                "content": "Synthetic task, do a search."
+              }
+            ],
+            "output": "Search for fictional place."
+          },
+          {
+            "index": 1,
+            "kind": "tool",
+            "tool_call": {
+              "id": "call-1",
+              "name": "search",
+              "arguments": {
+                "query": "fictional place"
+              }
+            },
+            "tool_call_id": "call-1",
+            "tool_response": {
+              "documents": [
+                {
+                  "text": "Copper Harbor"
+                }
+              ]
+            },
+            "model_visible": "No location in this excerpt.",
+            "context_transform": {
+              "source_pointer": "/steps/1/tool_response",
+              "target_pointer": "/steps/1/model_visible",
+              "version": "v1"
+            },
+            "retrieval_ms": 27
+          },
+          {
+            "index": 2,
+            "kind": "model",
+            "input": [
+              {
+                "role": "tool",
+                "content": "No location in this excerpt."
+              }
+            ],
+            "output": "<answer>Copper Harbor</answer>"
+          }
+        ]
+      }
+    },
+    {
+      "id": "2",
+      "rule": "parser_mismatch",
+      "label": "negative",
+      "label_source": "injected_fault",
+      "raw": {
+        "id": "fixture-1",
+        "dataset": "SYNTHETIC",
+        "question": "Synthetic fictional workplace?",
+        "gold_answers": [
+          "Copper Harbor"
+        ],
+        "demo": true,
+        "trace_complete": true,
+        "scores": {
+          "em": 0
+        },
+        "raw_final_output": "<answer>Copper Harbor</answer>",
+        "parsed_answer": "Copper Harbor",
+        "runtime_status": "ok",
+        "execution_context": {
+          "checkpoint_id": "fixture-cp",
+          "weights_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "base_model": "synthetic",
+          "model_revision": "fixture-v1",
+          "panel_hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+          "prompt": {
+            "version": "p1"
+          },
+          "chat_template": {
+            "version": "t1"
+          },
+          "tokenizer": {
+            "version": "t1"
+          },
+          "tool_schema": {
+            "version": "s1"
+          },
+          "retriever": {
+            "snapshot": "synthetic"
+          },
+          "context_builder": {
+            "version": "v1"
+          },
+          "parser": {
+            "version": "p1"
+          },
+          "scorer": {
+            "version": "s1"
+          },
+          "budget": {
+            "max_search": 4
+          },
+          "decoding": {
+            "temperature": 0
+          },
+          "seed": 42,
+          "runtime": {
+            "version": "fixture-runtime"
+          },
+          "state_reset": {
+            "per_question": true
+          },
+          "harness_version": "fixture"
+        },
+        "steps": [
+          {
+            "index": 0,
+            "kind": "model",
+            "input": [
+              {
+                "role": "user",
+                "content": "Synthetic task, do a search."
+              }
+            ],
+            "output": "Search for fictional place."
+          },
+          {
+            "index": 1,
+            "kind": "tool",
+            "tool_call": {
+              "id": "call-1",
+              "name": "search",
+              "arguments": {
+                "query": "fictional place"
+              }
+            },
+            "tool_call_id": "call-1",
+            "tool_response": {
+              "documents": [
+                {
+                  "text": "Copper Harbor"
+                }
+              ]
+            },
+            "model_visible": "No location in this excerpt.",
+            "context_transform": {
+              "source_pointer": "/steps/1/tool_response",
+              "target_pointer": "/steps/1/model_visible",
+              "version": "v1"
+            },
+            "retrieval_ms": 27
+          },
+          {
+            "index": 2,
+            "kind": "model",
+            "input": [
+              {
+                "role": "tool",
+                "content": "No location in this excerpt."
+              }
+            ],
+            "output": "<answer>Copper Harbor</answer>"
+          }
+        ]
+      }
+    }
+  ]
+}

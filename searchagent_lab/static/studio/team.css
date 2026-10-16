@@ -1,0 +1,27 @@
+body:has(.team-login){background:var(--s-soft);color:var(--s-ink);margin:0;font:16px/1.7 system-ui,sans-serif}
+.team-login{max-width:520px;margin:12vh auto;padding:42px;border:1px solid var(--s-accent-line);border-radius:16px;background:#fff;box-shadow:0 12px 40px #172b4910}
+.team-eyebrow{letter-spacing:.16em;color:var(--s-muted);font-size:13px}
+.team-login h1{font-size:30px}
+.team-login p,.team-login small{color:var(--s-muted)}
+.team-login input,.team-login button{display:block;box-sizing:border-box;width:100%;font:inherit;padding:12px;margin:12px 0;border:1px solid var(--s-accent-line);border-radius:8px}
+.team-login button{background:var(--s-blue);color:white;cursor:pointer}
+.team-login button:disabled{opacity:.6}
+.team-login #team-error{color:var(--s-bad);min-height:24px}
+.s-team-source{display:flex;flex-wrap:wrap;align-items:center;gap:12px;padding:12px 16px;border:1px solid var(--s-accent-line);background:var(--s-soft);border-radius:8px;margin:14px 0}
+.s-team-source small{margin-left:auto}
+.s-team-import{padding:22px;border:1px solid var(--s-accent-line);background:white;border-radius:10px;margin:16px 0}
+.s-team-import input{max-width:580px;width:100%;box-sizing:border-box}
+.s-team-import h2{font-size:18px}
+.s-team-import .s-field{margin:12px 0}
+@media(max-width:640px){.team-login{margin:8vh 16px;padding:24px}
+.s-team-source small{margin-left:0}
+}
+
+/* SoftStylePatch: public team shell. */
+.team-login{border-color:var(--s-border);border-radius:20px;box-shadow:var(--s-shadow)}
+
+.team-login button{background:var(--s-blue);color:#fff}
+
+.s-team-source{background:var(--s-soft);border-color:var(--s-border);border-radius:14px}
+
+.s-team-import{background:#fff;border-color:var(--s-border);border-radius:18px;box-shadow:var(--s-shadow)}

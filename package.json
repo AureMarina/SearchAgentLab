@@ -1,0 +1,14 @@
+{
+  "name": "searchagent-lab-assets",
+  "private": true,
+  "version": "0.10.0",
+  "description": "Optional build tools; the viewer itself requires only Python.",
+  "scripts": {
+    "build": "node scripts/build_frontend.mjs",
+    "build:offline": "node scripts/build_frontend_offline.mjs"
+  },
+  "devDependencies": {
+    "esbuild": "0.28.2"
+  },
+  "type": "module"
+}

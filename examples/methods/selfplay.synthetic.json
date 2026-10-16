@@ -1,0 +1,608 @@
+{
+  "method_schema": "method-evidence-v1",
+  "demo": true,
+  "objects": [
+    {
+      "id": "sp-round-003",
+      "kind": "selfplay_cycle",
+      "demo": true,
+      "usage": "training",
+      "data": {
+        "round": 3,
+        "status": "recorded",
+        "participants": [
+          {
+            "id": "agent-a",
+            "label": "Agent A",
+            "model": "SYNTHETIC / no model executed",
+            "checkpoint_id": "sp-cp-0"
+          },
+          {
+            "id": "agent-b",
+            "label": "Agent B",
+            "model": "SYNTHETIC / no model executed",
+            "checkpoint_id": "sp-cp-0"
+          }
+        ]
+      },
+      "title": "Round 003 · 双向出题与解题（合成）"
+    },
+    {
+      "id": "sp-doc-01",
+      "kind": "dataset_manifest",
+      "demo": true,
+      "usage": "training",
+      "data": {
+        "documents": [
+          {
+            "id": "fixture-01",
+            "text": "虚构档案：蓝色车站的导演是 林舟。林舟出生于 银湾。"
+          }
+        ]
+      },
+      "title": "出题来源文档（合成）"
+    },
+    {
+      "id": "sp-q-017-v1",
+      "kind": "generated_question",
+      "demo": true,
+      "usage": "training",
+      "data": {
+        "question": "在这个虚构档案中，电影《蓝色车站》导演的出生地是哪里？",
+        "proposed_answer": "银湾",
+        "source_documents": [
+          "fixture-01"
+        ]
+      },
+      "title": "Q017 · 关系链问题",
+      "version": "v1",
+      "derived_from": [
+        "sp-doc-01"
+      ]
+    },
+    {
+      "id": "sp-q-018-v1",
+      "kind": "generated_question",
+      "demo": true,
+      "usage": "training",
+      "data": {
+        "question": "在这个虚构档案中，旅人号的设计者于哪年获奖？",
+        "proposed_answer": "1978",
+        "source_documents": [
+          "fixture-02"
+        ]
+      },
+      "title": "Q018 · 缺少来源事实",
+      "version": "v1"
+    },
+    {
+      "id": "sp-propose-a-trace",
+      "kind": "trace",
+      "demo": true,
+      "usage": "training",
+      "data": {
+        "demo": true,
+        "question": "依据给定虚构档案生成一道问题",
+        "actor": "proposer",
+        "scores": {},
+        "runtime_status": "ok",
+        "parsed_answer": "在这个虚构档案中，电影《蓝色车站》导演的出生地是哪里？",
+        "raw_final_output": "<answer>在这个虚构档案中，电影《蓝色车站》导演的出生地是哪里？</answer>",
+        "termination_reason": "final_answer",
+        "steps": [
+          {
+            "index": 0,
+            "kind": "model",
+            "input": [
+              {
+                "role": "user",
+                "content": "依据给定虚构档案生成一道问题"
+              }
+            ],
+            "output": "检索 blue station fictional director"
+          },
+          {
+            "index": 1,
+            "kind": "tool",
+            "tool_call": {
+              "name": "search",
+              "arguments": {
+                "query": "blue station fictional director"
+              }
+            },
+            "tool_response": {
+              "documents": [
+                {
+                  "id": "fixture-doc",
+                  "text": "虚构档案：导演 林舟，出生地 银湾。"
+                }
+              ]
+            },
+            "model_visible": "虚构档案：导演 林舟，出生地 银湾。"
+          },
+          {
+            "index": 2,
+            "kind": "model",
+            "input": [
+              {
+                "role": "user",
+                "content": "依据给定虚构档案生成一道问题"
+              },
+              {
+                "role": "tool",
+                "content": "虚构档案：导演 林舟，出生地 银湾。"
+              }
+            ],
+            "output": "<answer>在这个虚构档案中，电影《蓝色车站》导演的出生地是哪里？</answer>"
+          }
+        ]
+      },
+      "title": "Agent A · 出题轨迹"
+    },
+    {
+      "id": "sp-propose-b-trace",
+      "kind": "trace",
+      "demo": true,
+      "usage": "training",
+      "data": {
+        "demo": true,
+        "question": "根据虚构档案生成问题",
+        "actor": "proposer",
+        "scores": {},
+        "runtime_status": "ok",
+        "parsed_answer": "在这个虚构档案中，旅人号的设计者于哪年获奖？",
+        "raw_final_output": "<answer>在这个虚构档案中，旅人号的设计者于哪年获奖？</answer>",
+        "termination_reason": "final_answer",
+        "steps": [
+          {
+            "index": 0,
+            "kind": "model",
+            "input": [
+              {
+                "role": "user",
+                "content": "根据虚构档案生成问题"
+              }
+            ],
+            "output": "检索 traveler fictional designer award"
+          },
+          {
+            "index": 1,
+            "kind": "tool",
+            "tool_call": {
+              "name": "search",
+              "arguments": {
+                "query": "traveler fictional designer award"
+              }
+            },
+            "tool_response": {
+              "documents": [
+                {
+                  "id": "fixture-doc",
+                  "text": "档案仅记录了设计者姓名，没有获奖年份。"
+                }
+              ]
+            },
+            "model_visible": "档案仅记录了设计者姓名，没有获奖年份。"
+          },
+          {
+            "index": 2,
+            "kind": "model",
+            "input": [
+              {
+                "role": "user",
+                "content": "根据虚构档案生成问题"
+              },
+              {
+                "role": "tool",
+                "content": "档案仅记录了设计者姓名，没有获奖年份。"
+              }
+            ],
+            "output": "<answer>在这个虚构档案中，旅人号的设计者于哪年获奖？</answer>"
+          }
+        ]
+      },
+      "title": "Agent B · 出题轨迹"
+    },
+    {
+      "id": "sp-proposal-a",
+      "kind": "proposal",
+      "demo": true,
+      "usage": "training",
+      "data": {
+        "cycle_id": "sp-round-003",
+        "question_id": "sp-q-017-v1",
+        "actor_id": "agent-a",
+        "solver_actor_id": "agent-b",
+        "trace_ref": {
+          "object_id": "sp-propose-a-trace",
+          "pointer": ""
+        }
+      },
+      "title": "A 出题 → B 解题"
+    },
+    {
+      "id": "sp-proposal-b",
+      "kind": "proposal",
+      "demo": true,
+      "usage": "training",
+      "data": {
+        "cycle_id": "sp-round-003",
+        "question_id": "sp-q-018-v1",
+        "actor_id": "agent-b",
+        "solver_actor_id": "agent-a",
+        "trace_ref": {
+          "object_id": "sp-propose-b-trace",
+          "pointer": ""
+        }
+      },
+      "title": "B 出题 → A 解题"
+    },
+    {
+      "id": "sp-review-017",
+      "kind": "question_review",
+      "demo": true,
+      "usage": "training",
+      "data": {
+        "question_id": "sp-q-017-v1",
+        "status": "accepted",
+        "verified_answer": "银湾",
+        "reviewer": {
+          "name": "synthetic-independent-review",
+          "version": "fixture-v1"
+        },
+        "reason": "合成档案两段关系支持答案。"
+      },
+      "title": "Q017 · 独立审核",
+      "evidence_refs": [
+        {
+          "object_id": "sp-doc-01",
+          "pointer": "/documents/0/text"
+        }
+      ]
+    },
+    {
+      "id": "sp-review-018",
+      "kind": "question_review",
+      "demo": true,
+      "usage": "training",
+      "data": {
+        "question_id": "sp-q-018-v1",
+        "status": "rejected",
+        "reviewer": {
+          "name": "synthetic-independent-review",
+          "version": "fixture-v1"
+        },
+        "reason": "来源未给出获奖年份；不能把全错直接当高质量难题。"
+      },
+      "title": "Q018 · 审核驳回"
+    },
+    {
+      "id": "sp-solve-b-1",
+      "kind": "trace",
+      "demo": true,
+      "usage": "training",
+      "data": {
+        "demo": true,
+        "question": "在这个虚构档案中，电影《蓝色车站》导演的出生地是哪里？",
+        "actor": "solver",
+        "scores": {
+          "em": 0
+        },
+        "runtime_status": "ok",
+        "parsed_answer": "海港",
+        "raw_final_output": "<answer>海港</answer>",
+        "termination_reason": "final_answer",
+        "steps": [
+          {
+            "index": 0,
+            "kind": "model",
+            "input": [
+              {
+                "role": "user",
+                "content": "在这个虚构档案中，电影《蓝色车站》导演的出生地是哪里？"
+              }
+            ],
+            "output": "检索 蓝色车站 导演"
+          },
+          {
+            "index": 1,
+            "kind": "tool",
+            "tool_call": {
+              "name": "search",
+              "arguments": {
+                "query": "蓝色车站 导演"
+              }
+            },
+            "tool_response": {
+              "documents": [
+                {
+                  "id": "fixture-doc",
+                  "text": "蓝色车站导演 林舟。林舟出生地 银湾。"
+                }
+              ]
+            },
+            "model_visible": "蓝色车站导演 林舟。"
+          },
+          {
+            "index": 2,
+            "kind": "model",
+            "input": [
+              {
+                "role": "user",
+                "content": "在这个虚构档案中，电影《蓝色车站》导演的出生地是哪里？"
+              },
+              {
+                "role": "tool",
+                "content": "蓝色车站导演 林舟。"
+              }
+            ],
+            "output": "<answer>海港</answer>"
+          }
+        ]
+      },
+      "title": "B 解题 · Attempt 1（失败样例）"
+    },
+    {
+      "id": "sp-solve-b-2",
+      "kind": "trace",
+      "demo": true,
+      "usage": "training",
+      "data": {
+        "demo": true,
+        "question": "在这个虚构档案中，电影《蓝色车站》导演的出生地是哪里？",
+        "actor": "solver",
+        "scores": {
+          "em": 1
+        },
+        "runtime_status": "ok",
+        "parsed_answer": "银湾",
+        "raw_final_output": "<answer>银湾</answer>",
+        "termination_reason": "final_answer",
+        "steps": [
+          {
+            "index": 0,
+            "kind": "model",
+            "input": [
+              {
+                "role": "user",
+                "content": "在这个虚构档案中，电影《蓝色车站》导演的出生地是哪里？"
+              }
+            ],
+            "output": "检索 林舟 出生地"
+          },
+          {
+            "index": 1,
+            "kind": "tool",
+            "tool_call": {
+              "name": "search",
+              "arguments": {
+                "query": "林舟 出生地"
+              }
+            },
+            "tool_response": {
+              "documents": [
+                {
+                  "id": "fixture-doc",
+                  "text": "林舟出生地 银湾。"
+                }
+              ]
+            },
+            "model_visible": "林舟出生地 银湾。"
+          },
+          {
+            "index": 2,
+            "kind": "model",
+            "input": [
+              {
+                "role": "user",
+                "content": "在这个虚构档案中，电影《蓝色车站》导演的出生地是哪里？"
+              },
+              {
+                "role": "tool",
+                "content": "林舟出生地 银湾。"
+              }
+            ],
+            "output": "<answer>银湾</answer>"
+          }
+        ]
+      },
+      "title": "B 解题 · Attempt 2（成功样例）"
+    },
+    {
+      "id": "sp-solve-a-1",
+      "kind": "trace",
+      "demo": true,
+      "usage": "training",
+      "data": {
+        "demo": true,
+        "question": "在这个虚构档案中，旅人号的设计者于哪年获奖？",
+        "actor": "solver",
+        "scores": {
+          "em": 0
+        },
+        "runtime_status": "ok",
+        "parsed_answer": "未知",
+        "raw_final_output": "<answer>未知</answer>",
+        "termination_reason": "final_answer",
+        "steps": [
+          {
+            "index": 0,
+            "kind": "model",
+            "input": [
+              {
+                "role": "user",
+                "content": "在这个虚构档案中，旅人号的设计者于哪年获奖？"
+              }
+            ],
+            "output": "检索 旅人号 设计者 获奖年份"
+          },
+          {
+            "index": 1,
+            "kind": "tool",
+            "tool_call": {
+              "name": "search",
+              "arguments": {
+                "query": "旅人号 设计者 获奖年份"
+              }
+            },
+            "tool_response": {
+              "documents": [
+                {
+                  "id": "fixture-doc",
+                  "text": "没有获奖年份记录。"
+                }
+              ]
+            },
+            "model_visible": "没有获奖年份记录。"
+          },
+          {
+            "index": 2,
+            "kind": "model",
+            "input": [
+              {
+                "role": "user",
+                "content": "在这个虚构档案中，旅人号的设计者于哪年获奖？"
+              },
+              {
+                "role": "tool",
+                "content": "没有获奖年份记录。"
+              }
+            ],
+            "output": "<answer>未知</answer>"
+          }
+        ]
+      },
+      "title": "A 解题 · Attempt 1"
+    },
+    {
+      "id": "sp-attempt-017-1",
+      "kind": "solver_attempt",
+      "demo": true,
+      "usage": "training",
+      "data": {
+        "cycle_id": "sp-round-003",
+        "question_id": "sp-q-017-v1",
+        "actor_id": "agent-b",
+        "trace_ref": {
+          "object_id": "sp-solve-b-1",
+          "pointer": ""
+        },
+        "reference_used": "银湾",
+        "scores": {
+          "em": 0
+        },
+        "reward": 0,
+        "advantage": -0.7,
+        "group_id": "group-017",
+        "groundtruth_visible": false
+      },
+      "title": "Q017 / B / 1"
+    },
+    {
+      "id": "sp-attempt-017-2",
+      "kind": "solver_attempt",
+      "demo": true,
+      "usage": "training",
+      "data": {
+        "cycle_id": "sp-round-003",
+        "question_id": "sp-q-017-v1",
+        "actor_id": "agent-b",
+        "trace_ref": {
+          "object_id": "sp-solve-b-2",
+          "pointer": ""
+        },
+        "reference_used": "银湾",
+        "scores": {
+          "em": 1
+        },
+        "reward": 1,
+        "advantage": 0.7,
+        "group_id": "group-017",
+        "groundtruth_visible": false
+      },
+      "title": "Q017 / B / 2"
+    },
+    {
+      "id": "sp-attempt-018-1",
+      "kind": "solver_attempt",
+      "demo": true,
+      "usage": "training",
+      "data": {
+        "cycle_id": "sp-round-003",
+        "question_id": "sp-q-018-v1",
+        "actor_id": "agent-a",
+        "trace_ref": {
+          "object_id": "sp-solve-a-1",
+          "pointer": ""
+        },
+        "reference_used": "1978",
+        "scores": {
+          "em": 0
+        },
+        "reward": 0,
+        "groundtruth_visible": false
+      },
+      "title": "Q018 / A / 1 · 原评分保留"
+    },
+    {
+      "id": "sp-use-017-selected",
+      "kind": "training_use",
+      "demo": true,
+      "usage": "training",
+      "data": {
+        "artifact_ids": [
+          "sp-q-017-v1"
+        ],
+        "status": "selected",
+        "manifest_version": "synthetic-training-v3"
+      },
+      "title": "Q017 · 选入训练清单"
+    },
+    {
+      "id": "sp-use-017-sampled",
+      "kind": "training_use",
+      "demo": true,
+      "usage": "training",
+      "data": {
+        "artifact_ids": [
+          "sp-q-017-v1"
+        ],
+        "status": "sampled",
+        "batch_id": "fixture-batch-003",
+        "step": 100,
+        "manifest_version": "synthetic-training-v3"
+      },
+      "title": "Q017 · 实际采样日志（合成）"
+    },
+    {
+      "id": "sp-use-018-excluded",
+      "kind": "training_use",
+      "demo": true,
+      "usage": "training",
+      "data": {
+        "artifact_ids": [
+          "sp-q-018-v1"
+        ],
+        "status": "excluded",
+        "reason": "审核未通过"
+      },
+      "title": "Q018 · 不进入训练"
+    },
+    {
+      "id": "sp-update-003",
+      "kind": "training_update",
+      "demo": true,
+      "usage": "training",
+      "data": {
+        "cycle_id": "sp-round-003",
+        "consumption_ids": [
+          "sp-use-017-sampled"
+        ],
+        "output_checkpoint_id": "sp-cp-100",
+        "checkpoint_ref_status": "external_unverified",
+        "updated_actor_id": "agent-b"
+      },
+      "title": "Round 003 · 更新记录（合成）"
+    }
+  ]
+}

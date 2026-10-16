@@ -1,0 +1,18 @@
+/* Build-only CSS entry. All URLs remain local and all component styles stay separate. */
+@import '../inspector/inspector.css';
+@import '../methods/methods.css';
+@import './studio.css';
+@import './fonts.css';
+@import './workspace.css';
+@import './evaluation.css';
+@import './team.css';
+@import './method-data.css';
+@import './opd-tracking.css';
+@import './entropy-tracking.css';
+@import './entropy-discovery.css';
+@import './selfplay-tracking.css';
+@import './selfplay-discovery.css';
+
+@import './trace-browser.css';
+
+@import './clarity.css';

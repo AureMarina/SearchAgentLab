@@ -1,0 +1,22 @@
+{
+  "experiment_id": "REPLACE_WITH_EXISTING_EXPERIMENT_ID",
+  "track": "reproduction",
+  "kind": "agent_iteration",
+  "question": "填写复现目标",
+  "change": "填写相对论文配置的实际适配",
+  "constants": "填写保持条件",
+  "binding_origin": "retrospective",
+  "reproduction": {
+    "method_name": "Dr.Zero",
+    "source_url": "https://arxiv.org/abs/2601.07055",
+    "repository_url": "",
+    "code_revision": "unknown",
+    "protocol_mode": "unknown",
+    "adaptations": [],
+    "published_reference": {
+      "metric": null,
+      "value": null,
+      "source_location": null
+    }
+  }
+}

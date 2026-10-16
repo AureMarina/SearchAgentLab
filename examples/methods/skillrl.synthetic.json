@@ -1,0 +1,367 @@
+{
+  "method_schema": "method-evidence-v1",
+  "demo": true,
+  "objects": [
+    {
+      "id": "skill-source-trace",
+      "kind": "trace",
+      "demo": true,
+      "usage": "training",
+      "data": {
+        "demo": true,
+        "question": "在这个虚构档案中，电影《蓝色车站》导演的出生地是哪里？",
+        "actor": "solver",
+        "scores": {
+          "em": 0
+        },
+        "runtime_status": "ok",
+        "parsed_answer": "海港",
+        "raw_final_output": "<answer>海港</answer>",
+        "termination_reason": "final_answer",
+        "steps": [
+          {
+            "index": 0,
+            "kind": "model",
+            "input": [
+              {
+                "role": "user",
+                "content": "在这个虚构档案中，电影《蓝色车站》导演的出生地是哪里？"
+              }
+            ],
+            "output": "检索 同名导演 出生地"
+          },
+          {
+            "index": 1,
+            "kind": "tool",
+            "tool_call": {
+              "name": "search",
+              "arguments": {
+                "query": "同名导演 出生地"
+              }
+            },
+            "tool_response": {
+              "documents": [
+                {
+                  "id": "fixture-doc",
+                  "text": "同名实体 A 与 B。"
+                }
+              ]
+            },
+            "model_visible": "同名实体 A 与 B。"
+          },
+          {
+            "index": 2,
+            "kind": "model",
+            "input": [
+              {
+                "role": "user",
+                "content": "在这个虚构档案中，电影《蓝色车站》导演的出生地是哪里？"
+              },
+              {
+                "role": "tool",
+                "content": "同名实体 A 与 B。"
+              }
+            ],
+            "output": "<answer>海港</answer>"
+          }
+        ]
+      },
+      "title": "技能提炼来源（合成）"
+    },
+    {
+      "id": "skill-bank-v1",
+      "kind": "skill_bank",
+      "demo": true,
+      "usage": "training",
+      "data": {
+        "general_skills": [
+          {
+            "skill_id": "syn_chain",
+            "title": "按中间实体继续查证",
+            "principle": "先确认中间实体，再查询它的目标属性。",
+            "when_to_apply": "合成的关系链检索任务。"
+          },
+          {
+            "skill_id": "syn_stop",
+            "title": "有证据后结束",
+            "principle": "已有所需证据时停止搜索。",
+            "when_to_apply": "答案得到当前可见证据支持。"
+          }
+        ],
+        "query_type_skills": {
+          "multi_hop_reasoning": [
+            {
+              "skill_id": "syn_rel",
+              "title": "核对关系方向",
+              "principle": "区分作品的作者与作者的作品。",
+              "when_to_apply": "问题涉及逆向关系。"
+            }
+          ]
+        },
+        "common_mistakes": [
+          {
+            "mistake_id": "syn_err_01",
+            "description": "用错中间实体。",
+            "why_it_happens": "合成经验文字，不是已证根因。",
+            "how_to_avoid": "对照第一跳证据核对实体。"
+          }
+        ],
+        "metadata": {
+          "demo": true,
+          "note": "Entirely synthetic fixture; not the SkillRL authors' actual skills or model outputs."
+        },
+        "custom_extension": {
+          "preserved": "未知字段保留"
+        }
+      },
+      "title": "SkillBank v1 · Search（合成）",
+      "version": "v1",
+      "derived_from": [
+        "skill-source-trace"
+      ]
+    },
+    {
+      "id": "skill-teacher-trace",
+      "kind": "trace",
+      "demo": true,
+      "usage": "training",
+      "data": {
+        "demo": true,
+        "question": "根据合成失败轨迹改进技能",
+        "steps": [
+          {
+            "index": 0,
+            "kind": "model",
+            "input": "合成输入：混淆了同名实体，需要保留消歧信息。",
+            "output": "先确认中间实体及消歧信息，再查询它的目标属性。"
+          }
+        ]
+      },
+      "title": "教师改写轨迹（合成）"
+    },
+    {
+      "id": "skill-bank-v2",
+      "kind": "skill_bank",
+      "demo": true,
+      "usage": "training",
+      "data": {
+        "general_skills": [
+          {
+            "skill_id": "syn_chain",
+            "title": "按中间实体继续查证",
+            "principle": "先确认中间实体及消歧信息，再查询它的目标属性。",
+            "when_to_apply": "合成的关系链检索任务。"
+          }
+        ],
+        "query_type_skills": {
+          "multi_hop_reasoning": [
+            {
+              "skill_id": "syn_rel",
+              "title": "核对关系方向",
+              "principle": "区分作品的作者与作者的作品。",
+              "when_to_apply": "问题涉及逆向关系。"
+            },
+            {
+              "skill_id": "syn_alias",
+              "title": "核对实体别名",
+              "principle": "只有证据支持时才把两个名字视为同一实体。",
+              "when_to_apply": "检索结果使用不同别名。"
+            }
+          ]
+        },
+        "common_mistakes": [
+          {
+            "mistake_id": "syn_err_01",
+            "description": "用错中间实体。",
+            "why_it_happens": "合成经验文字，不是已证根因。",
+            "how_to_avoid": "对照第一跳证据核对实体。"
+          }
+        ],
+        "metadata": {
+          "demo": true,
+          "note": "Entirely synthetic fixture; not the SkillRL authors' actual skills or model outputs.",
+          "revision": "synthetic-v2"
+        },
+        "custom_extension": {
+          "preserved": "未知字段保留"
+        }
+      },
+      "title": "SkillBank v2 · 消歧改进（合成）",
+      "version": "v2",
+      "derived_from": [
+        "skill-bank-v1",
+        "skill-source-trace"
+      ]
+    },
+    {
+      "id": "skill-evolve-02",
+      "kind": "skill_evolution",
+      "demo": true,
+      "usage": "training",
+      "data": {
+        "parent_bank_id": "skill-bank-v1",
+        "bank_id": "skill-bank-v2",
+        "trigger": {
+          "kind": "evolution_feedback",
+          "failure_count": 1
+        },
+        "teacher": {
+          "model": "synthetic",
+          "revision": "fixture-v1"
+        },
+        "teacher_trace_ref": {
+          "object_id": "skill-teacher-trace",
+          "pointer": ""
+        },
+        "decision": "recorded"
+      },
+      "derived_from": [
+        "skill-source-trace"
+      ],
+      "title": "技能演化 v1 → v2（合成）"
+    },
+    {
+      "id": "skill-solver-trace",
+      "kind": "trace",
+      "demo": true,
+      "usage": "training",
+      "data": {
+        "demo": true,
+        "question": "在这个虚构档案中，电影《蓝色车站》导演的出生地是哪里？",
+        "actor": "solver",
+        "scores": {
+          "em": 1
+        },
+        "runtime_status": "ok",
+        "parsed_answer": "银湾",
+        "raw_final_output": "<answer>银湾</answer>",
+        "termination_reason": "final_answer",
+        "steps": [
+          {
+            "index": 0,
+            "kind": "model",
+            "input": [
+              {
+                "role": "system",
+                "content": "技能 syn_chain：先确认中间实体，再查询它的目标属性。"
+              },
+              {
+                "role": "user",
+                "content": "在这个虚构档案中，电影《蓝色车站》导演的出生地是哪里？"
+              }
+            ],
+            "output": "检索 蓝色车站 导演"
+          },
+          {
+            "index": 1,
+            "kind": "tool",
+            "tool_call": {
+              "name": "search",
+              "arguments": {
+                "query": "蓝色车站 导演"
+              }
+            },
+            "tool_response": {
+              "documents": [
+                {
+                  "id": "fixture-doc",
+                  "text": "导演林舟，出生地银湾。"
+                }
+              ]
+            },
+            "model_visible": "导演林舟，出生地银湾。"
+          },
+          {
+            "index": 2,
+            "kind": "model",
+            "input": [
+              {
+                "role": "user",
+                "content": "在这个虚构档案中，电影《蓝色车站》导演的出生地是哪里？"
+              },
+              {
+                "role": "tool",
+                "content": "导演林舟，出生地银湾。"
+              }
+            ],
+            "output": "<answer>银湾</answer>"
+          }
+        ]
+      },
+      "title": "带技能的解题轨迹（合成）"
+    },
+    {
+      "id": "skill-retrieval-01",
+      "kind": "skill_retrieval",
+      "demo": true,
+      "usage": "training",
+      "data": {
+        "bank_id": "skill-bank-v1",
+        "trace_ref": {
+          "object_id": "skill-solver-trace",
+          "pointer": ""
+        },
+        "query": "在这个虚构档案中，电影《蓝色车站》导演的出生地是哪里？",
+        "mode": "template",
+        "retriever_version": "synthetic-template-v1",
+        "index_hash": "not-used-template",
+        "candidates": [
+          {
+            "member": "syn_chain",
+            "rank": 1
+          },
+          {
+            "member": "syn_stop",
+            "rank": 2
+          }
+        ],
+        "selected": [
+          "syn_chain",
+          "syn_stop"
+        ],
+        "injections_complete": true,
+        "injections": [
+          {
+            "member": "syn_chain",
+            "rendered_text": "技能 syn_chain：先确认中间实体，再查询它的目标属性。",
+            "evidence_ref": {
+              "object_id": "skill-solver-trace",
+              "pointer": "/steps/0/input/0/content"
+            }
+          }
+        ]
+      },
+      "title": "检索与实际输入核对（合成）"
+    },
+    {
+      "id": "skill-retrieval-missing",
+      "kind": "skill_retrieval",
+      "demo": true,
+      "usage": "training",
+      "data": {
+        "bank_id": "skill-bank-v2",
+        "trace_ref": {
+          "object_id": "skill-solver-trace",
+          "pointer": ""
+        },
+        "mode": "embedding",
+        "query": "在这个虚构档案中，电影《蓝色车站》导演的出生地是哪里？",
+        "retriever_version": "synthetic-embedding-v1",
+        "selected": [
+          "syn_chain"
+        ],
+        "injections": [
+          {
+            "member": "syn_chain",
+            "rendered_text": "这个片段没有出现在保存的模型输入中。",
+            "evidence_ref": {
+              "object_id": "skill-solver-trace",
+              "pointer": "/steps/0/input/0/content"
+            }
+          }
+        ]
+      },
+      "title": "注入片段丢失检查（合成）"
+    }
+  ]
+}

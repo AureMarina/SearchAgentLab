@@ -1,0 +1,4 @@
+step,actor/pg_loss,critic/reward/mean
+0,0.80,0.10
+50,0.65,0.20
+100,0.40,0.30

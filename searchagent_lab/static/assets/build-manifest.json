@@ -1,0 +1,396 @@
+{
+  "builder": "Python stdlib native ESM packager (unminified)",
+  "main": "/assets/main-03C5D203F9B76A4F.js",
+  "css": "/assets/shell-15578257ECFF51DD.css",
+  "preload": [],
+  "files": [
+    {
+      "name": "main-03C5D203F9B76A4F.js",
+      "bytes": 14544,
+      "sha256": "cab9226f24bc9f341e684ca1d8e58d47ed5209bc418b57b0646c0cd196564a18"
+    },
+    {
+      "name": "chunk-F51FD76F14331921.js",
+      "bytes": 5574,
+      "sha256": "1ef25ab75dd9b5d370588e1d118883cb483697af7ea33fe49c7a4866d291a047"
+    },
+    {
+      "name": "chunk-E1EB354F726277C3.js",
+      "bytes": 1817,
+      "sha256": "ccd45f5ccf207a67963a5fc7a1d94bc5e1b0bd63473c6260a242ac257e4755d9"
+    },
+    {
+      "name": "chunk-38017A726E9F9CF5.js",
+      "bytes": 4401,
+      "sha256": "41a887cf67723636ff383e07211148d3bd84b0e47810b7f705b4b1f9769af2f8"
+    },
+    {
+      "name": "chunk-8B2C44C5E62A3F7C.js",
+      "bytes": 1905,
+      "sha256": "4f622276b59b2c73dc1c1a888cbd22cd7a877ecfad16cb3fa7129385cc56a079"
+    },
+    {
+      "name": "chunk-E8A274CB79B7A807.js",
+      "bytes": 1311,
+      "sha256": "c132852356daa669371ad839a84b3a351c782c54f479c8e46d675ccf775b3a86"
+    },
+    {
+      "name": "chunk-3600783F0B3CF6B5.js",
+      "bytes": 17713,
+      "sha256": "6ce017d70b54e7cb56a1a380d8d2abb5d371f4e07905f7e21cd5907166a9026a"
+    },
+    {
+      "name": "chunk-0DA19B2E303FFCF2.js",
+      "bytes": 5072,
+      "sha256": "4cca83a146f588e7722c3f6ae65ed421fa79c78277c1e28a7a9a4f5d78492fc0"
+    },
+    {
+      "name": "chunk-390F0CAF823DF8D0.js",
+      "bytes": 4988,
+      "sha256": "9b205f21e24570df3ac5d7f98972bdee9f8a8a5bdb678d4d8bdf4b9b28e6fd79"
+    },
+    {
+      "name": "chunk-5D688366C9ED8C84.js",
+      "bytes": 1471,
+      "sha256": "ba6737630758e18b50dce48c606c2235ebd8d57fbca1402151588af12a6bb74e"
+    },
+    {
+      "name": "chunk-876E8262FD6CA08D.js",
+      "bytes": 8046,
+      "sha256": "51f5b5c7e9ded650e93dfc60b916d62df3fbd3dbe6fed7d0506eadd545ae0178"
+    },
+    {
+      "name": "chunk-AE3224F87A2192F7.js",
+      "bytes": 16135,
+      "sha256": "4b7f5aabc363bb1734cf7a4d8b56a24dd7b137ec56bce7301a3a239cedd8ef6d"
+    },
+    {
+      "name": "chunk-D875F66C32166310.js",
+      "bytes": 2430,
+      "sha256": "1581c0e50671f47000eda2284035a633387b084cdb8f4223f77725a8cc9fc41a"
+    },
+    {
+      "name": "chunk-BDC5CC4569701DBB.js",
+      "bytes": 10879,
+      "sha256": "0c5e1d34658cf92a11eb91d5a58039237f9c69c9c95447b135c4af3d32260c45"
+    },
+    {
+      "name": "chunk-09373583A5B6DDDA.js",
+      "bytes": 25955,
+      "sha256": "1785d0d70835fee89bd902f515e8a60ef04230ccf0089844369417523f43cec5"
+    },
+    {
+      "name": "chunk-976112D62544066A.js",
+      "bytes": 2630,
+      "sha256": "9214db8984f1e5cc55fd0848726bd65b9f838a828eb3fb0b85c458d0e516ffaf"
+    },
+    {
+      "name": "chunk-DB3887FF11C2DF88.js",
+      "bytes": 3780,
+      "sha256": "5fbc6725fd12725dc56919bc0d2a7ca8359310a05ac6f7c6a48a4956793713eb"
+    },
+    {
+      "name": "chunk-51A0AEA413031BE3.js",
+      "bytes": 3624,
+      "sha256": "e2791683337c632fb1e505212830f525e77171edda0ef70859101c0db85ff54d"
+    },
+    {
+      "name": "chunk-693D1C0782FE7255.js",
+      "bytes": 4344,
+      "sha256": "8dedf65e47188681edd46b6386c53fd963e3eb332c167d1d6e234fb6010a8a70"
+    },
+    {
+      "name": "chunk-6EB312151BAA41EC.js",
+      "bytes": 12848,
+      "sha256": "b9b526335386e7fd5cadcf9657ebfc4c31c25525ab94785f9990ecbeb23b1386"
+    },
+    {
+      "name": "chunk-29D445140A1FB405.js",
+      "bytes": 2750,
+      "sha256": "369252ecec5a99a6dee280b99051112108c9ac1f13964e23041710dadf51ab89"
+    },
+    {
+      "name": "chunk-896DA65B5AA6ABA2.js",
+      "bytes": 13745,
+      "sha256": "210c5774d9a86399828b40ab9cf9d88ac1c48a1c2237acfe3b9096c3e18582eb"
+    },
+    {
+      "name": "chunk-4E766F7F4FCA0F8E.js",
+      "bytes": 6629,
+      "sha256": "5b1556ecb57ccc69eb1d492353f0bb7d7ef428f5508c687a5f56a4ca0163ca81"
+    },
+    {
+      "name": "chunk-FA5868B8E5D4159E.js",
+      "bytes": 11952,
+      "sha256": "a44e081df481fdae0a817480dcf4311e3c6033f44df94f24b6c22f6f8a1d820a"
+    },
+    {
+      "name": "chunk-039089D13200B1BF.js",
+      "bytes": 31937,
+      "sha256": "0dd782c7aedd80c4e45c41ff3dba3f468075b69cf2291fe09af41c743b30263f"
+    },
+    {
+      "name": "chunk-976776B472598145.js",
+      "bytes": 34012,
+      "sha256": "344b384bdb8deb06e4887187f12820bb56a3a576ee7e76f8377469675e664a0e"
+    },
+    {
+      "name": "chunk-18BBE462C275468C.js",
+      "bytes": 23543,
+      "sha256": "ce68c54ad2029bee5f47da0af2f1de80c08ccf1ac98de2f15bd6cf243474e6b7"
+    },
+    {
+      "name": "chunk-D6A50802083FB35E.js",
+      "bytes": 43850,
+      "sha256": "0c6638a9cb1c7d724451b06720ad177c3f730493c7ddc82976e49663ecf82e8c"
+    },
+    {
+      "name": "chunk-461681AE069DD912.js",
+      "bytes": 9845,
+      "sha256": "c454c32ce3031344812a1014d2ee92fdd9ee4345951f7aa0b47c77fdb98fe92c"
+    },
+    {
+      "name": "chunk-C66D6BEDFA09053A.js",
+      "bytes": 21699,
+      "sha256": "3005a8219eb3797e6bcaf451c21daa22bff76ae11bce2adb5fdf6f4ae1e9f3f2"
+    },
+    {
+      "name": "chunk-3296E69FB22AD4BA.js",
+      "bytes": 29392,
+      "sha256": "4a5144cb61557979976195e0aa1a92358dea7c1d6da8d7dd090f06b59a9dd146"
+    },
+    {
+      "name": "chunk-92E9FF1C36175FBA.js",
+      "bytes": 27979,
+      "sha256": "d875ca5a4769d920045d19c6705d419fb7b406246be635219fc4b876c9117fcb"
+    },
+    {
+      "name": "chunk-FF85BC8C2F170EA0.js",
+      "bytes": 3479,
+      "sha256": "1ec364c631ffaf39d82d47370c8f3178356ec4c906b33d2c722a7045d70351d7"
+    },
+    {
+      "name": "chunk-43148FC947146229.js",
+      "bytes": 4407,
+      "sha256": "f355d912cf0c5e3efcfdf16d1b6e80e29efb63185b37af1af13adeee04a4ee67"
+    },
+    {
+      "name": "chunk-27345CDE84E583EC.js",
+      "bytes": 34492,
+      "sha256": "e5a096d037815db25158f03a7e1556a9e527a4bb5d96d5d3edfcd55f1952bc1f"
+    },
+    {
+      "name": "chunk-DD000E0162F7FDE5.js",
+      "bytes": 11603,
+      "sha256": "7594a6b1260ac9659152a0b76e598443f4a1f5ed5733aa8d7368030b8c05c011"
+    },
+    {
+      "name": "chunk-95350A156476C809.js",
+      "bytes": 3034,
+      "sha256": "76254828f10d668b0c061febbfa21e6afdad1a37a86d24a3f0da806db463df95"
+    },
+    {
+      "name": "chunk-A9FA46D2550DEA04.js",
+      "bytes": 30417,
+      "sha256": "c20cda307a5d6ce9b4e74cf17f765a7389eb8cac654ee2a82de8dcf8dc6376e6"
+    },
+    {
+      "name": "chunk-4C5B4318DB5084BE.js",
+      "bytes": 6210,
+      "sha256": "c370d567be662a8057d8755330582c80ce1b370b970c508a4d66fd9c58e57051"
+    },
+    {
+      "name": "chunk-9D51F82C45D5686C.js",
+      "bytes": 2224,
+      "sha256": "0f50dd28c2e65ec5455839d897cea1e603baafe028c82fd47277d8543eb992d6"
+    },
+    {
+      "name": "shell-15578257ECFF51DD.css",
+      "bytes": 111599,
+      "sha256": "15578257ecff51ddd95dd63de0d70668ded2bd084e2427a9e6d2878cf749bebb"
+    }
+  ],
+  "dependencies": {
+    "main-03C5D203F9B76A4F.js": [
+      "chunk-3600783F0B3CF6B5.js",
+      "chunk-5D688366C9ED8C84.js",
+      "chunk-876E8262FD6CA08D.js",
+      "chunk-8B2C44C5E62A3F7C.js",
+      "chunk-92E9FF1C36175FBA.js",
+      "chunk-95350A156476C809.js",
+      "chunk-A9FA46D2550DEA04.js",
+      "chunk-AE3224F87A2192F7.js",
+      "chunk-C66D6BEDFA09053A.js",
+      "chunk-DD000E0162F7FDE5.js",
+      "chunk-E8A274CB79B7A807.js",
+      "chunk-F51FD76F14331921.js"
+    ],
+    "chunk-F51FD76F14331921.js": [
+      "chunk-38017A726E9F9CF5.js",
+      "chunk-E1EB354F726277C3.js"
+    ],
+    "chunk-E1EB354F726277C3.js": [],
+    "chunk-38017A726E9F9CF5.js": [
+      "chunk-E1EB354F726277C3.js"
+    ],
+    "chunk-8B2C44C5E62A3F7C.js": [],
+    "chunk-E8A274CB79B7A807.js": [],
+    "chunk-3600783F0B3CF6B5.js": [
+      "chunk-0DA19B2E303FFCF2.js",
+      "chunk-390F0CAF823DF8D0.js",
+      "chunk-E8A274CB79B7A807.js",
+      "chunk-F51FD76F14331921.js"
+    ],
+    "chunk-0DA19B2E303FFCF2.js": [
+      "chunk-F51FD76F14331921.js"
+    ],
+    "chunk-390F0CAF823DF8D0.js": [
+      "chunk-F51FD76F14331921.js"
+    ],
+    "chunk-5D688366C9ED8C84.js": [],
+    "chunk-876E8262FD6CA08D.js": [
+      "chunk-F51FD76F14331921.js"
+    ],
+    "chunk-AE3224F87A2192F7.js": [
+      "chunk-039089D13200B1BF.js",
+      "chunk-09373583A5B6DDDA.js",
+      "chunk-0DA19B2E303FFCF2.js",
+      "chunk-27345CDE84E583EC.js",
+      "chunk-3296E69FB22AD4BA.js",
+      "chunk-3600783F0B3CF6B5.js",
+      "chunk-390F0CAF823DF8D0.js",
+      "chunk-461681AE069DD912.js",
+      "chunk-6EB312151BAA41EC.js",
+      "chunk-876E8262FD6CA08D.js",
+      "chunk-976776B472598145.js",
+      "chunk-BDC5CC4569701DBB.js",
+      "chunk-D6A50802083FB35E.js",
+      "chunk-D875F66C32166310.js",
+      "chunk-F51FD76F14331921.js"
+    ],
+    "chunk-D875F66C32166310.js": [],
+    "chunk-BDC5CC4569701DBB.js": [
+      "chunk-876E8262FD6CA08D.js",
+      "chunk-F51FD76F14331921.js"
+    ],
+    "chunk-09373583A5B6DDDA.js": [
+      "chunk-51A0AEA413031BE3.js",
+      "chunk-876E8262FD6CA08D.js",
+      "chunk-976112D62544066A.js",
+      "chunk-BDC5CC4569701DBB.js",
+      "chunk-D875F66C32166310.js",
+      "chunk-DB3887FF11C2DF88.js",
+      "chunk-F51FD76F14331921.js"
+    ],
+    "chunk-976112D62544066A.js": [
+      "chunk-DB3887FF11C2DF88.js",
+      "chunk-F51FD76F14331921.js"
+    ],
+    "chunk-DB3887FF11C2DF88.js": [],
+    "chunk-51A0AEA413031BE3.js": [
+      "chunk-693D1C0782FE7255.js",
+      "chunk-F51FD76F14331921.js"
+    ],
+    "chunk-693D1C0782FE7255.js": [],
+    "chunk-6EB312151BAA41EC.js": [
+      "chunk-29D445140A1FB405.js",
+      "chunk-4E766F7F4FCA0F8E.js",
+      "chunk-896DA65B5AA6ABA2.js",
+      "chunk-D875F66C32166310.js",
+      "chunk-F51FD76F14331921.js",
+      "chunk-FA5868B8E5D4159E.js"
+    ],
+    "chunk-29D445140A1FB405.js": [
+      "chunk-F51FD76F14331921.js"
+    ],
+    "chunk-896DA65B5AA6ABA2.js": [],
+    "chunk-4E766F7F4FCA0F8E.js": [
+      "chunk-F51FD76F14331921.js"
+    ],
+    "chunk-FA5868B8E5D4159E.js": [
+      "chunk-DB3887FF11C2DF88.js",
+      "chunk-F51FD76F14331921.js"
+    ],
+    "chunk-039089D13200B1BF.js": [
+      "chunk-29D445140A1FB405.js",
+      "chunk-896DA65B5AA6ABA2.js",
+      "chunk-D875F66C32166310.js",
+      "chunk-E1EB354F726277C3.js",
+      "chunk-F51FD76F14331921.js",
+      "chunk-FA5868B8E5D4159E.js"
+    ],
+    "chunk-976776B472598145.js": [
+      "chunk-18BBE462C275468C.js",
+      "chunk-38017A726E9F9CF5.js",
+      "chunk-F51FD76F14331921.js"
+    ],
+    "chunk-18BBE462C275468C.js": [
+      "chunk-38017A726E9F9CF5.js",
+      "chunk-F51FD76F14331921.js"
+    ],
+    "chunk-D6A50802083FB35E.js": [
+      "chunk-38017A726E9F9CF5.js",
+      "chunk-461681AE069DD912.js",
+      "chunk-F51FD76F14331921.js"
+    ],
+    "chunk-461681AE069DD912.js": [
+      "chunk-18BBE462C275468C.js",
+      "chunk-3296E69FB22AD4BA.js",
+      "chunk-92E9FF1C36175FBA.js",
+      "chunk-C66D6BEDFA09053A.js",
+      "chunk-F51FD76F14331921.js"
+    ],
+    "chunk-C66D6BEDFA09053A.js": [
+      "chunk-38017A726E9F9CF5.js",
+      "chunk-F51FD76F14331921.js"
+    ],
+    "chunk-3296E69FB22AD4BA.js": [
+      "chunk-F51FD76F14331921.js"
+    ],
+    "chunk-92E9FF1C36175FBA.js": [
+      "chunk-38017A726E9F9CF5.js",
+      "chunk-43148FC947146229.js",
+      "chunk-FF85BC8C2F170EA0.js"
+    ],
+    "chunk-FF85BC8C2F170EA0.js": [
+      "chunk-E1EB354F726277C3.js"
+    ],
+    "chunk-43148FC947146229.js": [
+      "chunk-38017A726E9F9CF5.js",
+      "chunk-E1EB354F726277C3.js"
+    ],
+    "chunk-27345CDE84E583EC.js": [
+      "chunk-38017A726E9F9CF5.js",
+      "chunk-390F0CAF823DF8D0.js",
+      "chunk-461681AE069DD912.js",
+      "chunk-F51FD76F14331921.js"
+    ],
+    "chunk-DD000E0162F7FDE5.js": [
+      "chunk-F51FD76F14331921.js",
+      "chunk-FA5868B8E5D4159E.js"
+    ],
+    "chunk-95350A156476C809.js": [
+      "chunk-38017A726E9F9CF5.js",
+      "chunk-F51FD76F14331921.js"
+    ],
+    "chunk-A9FA46D2550DEA04.js": [
+      "chunk-3296E69FB22AD4BA.js",
+      "chunk-38017A726E9F9CF5.js",
+      "chunk-43148FC947146229.js",
+      "chunk-4C5B4318DB5084BE.js",
+      "chunk-876E8262FD6CA08D.js",
+      "chunk-976776B472598145.js",
+      "chunk-9D51F82C45D5686C.js",
+      "chunk-D6A50802083FB35E.js",
+      "chunk-D875F66C32166310.js",
+      "chunk-F51FD76F14331921.js",
+      "chunk-FA5868B8E5D4159E.js"
+    ],
+    "chunk-4C5B4318DB5084BE.js": [
+      "chunk-E1EB354F726277C3.js"
+    ],
+    "chunk-9D51F82C45D5686C.js": [
+      "chunk-FF85BC8C2F170EA0.js"
+    ]
+  }
+}

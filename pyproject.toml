@@ -1,0 +1,28 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "searchagent-lab"
+version = "0.10.0"
+description = "Local-first training, checkpoint evaluation, and trajectory inspection for Search Agents"
+readme = "README_ZH.md"
+requires-python = ">=3.10"
+license = "MIT"
+authors = [{name = "SearchAgent Lab contributors"}]
+dependencies = []
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "Operating System :: OS Independent",
+  "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+
+[project.scripts]
+searchagent-lab = "searchagent_lab.cli:main"
+
+[tool.setuptools]
+packages = ["searchagent_lab", "searchagent_lab.inspection", "searchagent_lab.diagnostic_loop", "searchagent_lab.methods", "searchagent_lab.studio", "searchagent_lab.team"]
+include-package-data = true
+
+[tool.setuptools.package-data]
+searchagent_lab = ["static/*", "static/vendor/*", "static/assets/*", "static/inspector/*.js", "static/inspector/*.css", "static/methods/*.js", "static/methods/*.css", "static/studio/*.js", "static/studio/*.css", "studio/*.json"]

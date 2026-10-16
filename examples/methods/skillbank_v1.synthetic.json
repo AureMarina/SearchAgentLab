@@ -1,0 +1,41 @@
+{
+  "general_skills": [
+    {
+      "skill_id": "syn_chain",
+      "title": "按中间实体继续查证",
+      "principle": "先确认中间实体，再查询它的目标属性。",
+      "when_to_apply": "合成的关系链检索任务。"
+    },
+    {
+      "skill_id": "syn_stop",
+      "title": "有证据后结束",
+      "principle": "已有所需证据时停止搜索。",
+      "when_to_apply": "答案得到当前可见证据支持。"
+    }
+  ],
+  "query_type_skills": {
+    "multi_hop_reasoning": [
+      {
+        "skill_id": "syn_rel",
+        "title": "核对关系方向",
+        "principle": "区分作品的作者与作者的作品。",
+        "when_to_apply": "问题涉及逆向关系。"
+      }
+    ]
+  },
+  "common_mistakes": [
+    {
+      "mistake_id": "syn_err_01",
+      "description": "用错中间实体。",
+      "why_it_happens": "合成经验文字，不是已证根因。",
+      "how_to_avoid": "对照第一跳证据核对实体。"
+    }
+  ],
+  "metadata": {
+    "demo": true,
+    "note": "Entirely synthetic fixture; not the SkillRL authors' actual skills or model outputs."
+  },
+  "custom_extension": {
+    "preserved": "未知字段保留"
+  }
+}

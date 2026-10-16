@@ -1,0 +1,122 @@
+{
+  "reviewed_on": "2026-10-10",
+  "retrieval": "Actual raw GitHub source downloaded and inspected; web search service returned DisabledError in this execution. No upstream training/model was run.",
+  "version_scope": "Hashes identify reviewed source bytes, not the unknown actual trainer revision of later imported logs.",
+  "sources": [
+    {
+      "source_key": "verl_generations",
+      "url": "https://github.com/verl-project/verl/blob/main/verl/trainer/ppo/ray_trainer.py",
+      "sha256": "eb41f99ccc66976eab14ebe35aa1aa5b7318e02469240ef1569ac4c884c94312",
+      "retrieved_raw_url": "https://raw.githubusercontent.com/verl-project/verl/main/verl/trainer/ppo/ray_trainer.py",
+      "bytes": 91036,
+      "entrypoint": "_write_generations",
+      "fields": [
+        "input",
+        "output",
+        "gts",
+        "score",
+        "step"
+      ],
+      "extras": "Only reward extras whose list length equals batch input length",
+      "limitation": "Does not natively export complete teacher probabilities, token advantages, masks or formal evaluation protocol"
+    },
+    {
+      "source_key": "verl_losses",
+      "url": "https://github.com/verl-project/verl/blob/main/verl/trainer/distillation/losses.py",
+      "sha256": "00c9a6851b9de1d17d13305a6d8524d20e900999d471d39c499344b5069865da",
+      "retrieved_raw_url": "https://raw.githubusercontent.com/verl-project/verl/main/verl/trainer/distillation/losses.py",
+      "bytes": 17249,
+      "entrypoints": [
+        "distillation_ppo_loss",
+        "distillation_loss",
+        "compute_forward_kl_topk"
+      ],
+      "rules": [
+        "use_task_rewards and use_policy_gradient are independent",
+        "outer coefficient is 1.0 when use_task_rewards is false",
+        "zero overlap may yield reported overlap_token_advantage 0.0"
+      ],
+      "limitation": "Reported overlap definition is implementation-specific, not interchangeable with sampled-token or other paper definitions"
+    },
+    {
+      "source_key": "ocsd_diagnostic",
+      "url": "https://github.com/yiy1x/OCSD/blob/main/verl/trainer/ppo/oc_opsd_ray_trainer.py",
+      "sha256": "9f62e0c1d7e0e0ef807fe53eb5c7a3d5bad1a951939f4b602be5567c9486504a",
+      "retrieved_raw_url": "https://raw.githubusercontent.com/yiy1x/OCSD/main/verl/trainer/ppo/oc_opsd_ray_trainer.py",
+      "bytes": 63274,
+      "entrypoint": "_save_oc_diagnostic",
+      "format": "Parquet one row per trajectory environment step",
+      "fields": [
+        "global_step",
+        "batch_idx",
+        "traj_uid",
+        "uid",
+        "step_index",
+        "available_future_len",
+        "future_obs_text_1",
+        "num_tokens",
+        "step_selected",
+        "is_nll_selected",
+        "advantage",
+        "step_delta_F",
+        "step_delta_A",
+        "step_residual_e",
+        "step_q",
+        "step_abs_delta_F",
+        "step_abs_delta_A",
+        "step_abs_residual_e",
+        "step_abs_q",
+        "mean_old_log_prob",
+        "mean_full_log_prob",
+        "mean_abl_log_prob"
+      ],
+      "rules": [
+        "step_selected means available_future_len > 0",
+        "is_nll_selected None is full-batch path, not false",
+        "num_tokens is unclamped true response-mask count; aggregate divisor is clamp(min=1)",
+        "diagnostic_max_samples defaults to 512 and can truncate"
+      ],
+      "limitation": "No complete token vectors, full teacher prompt or decoded response in this native dump"
+    },
+    {
+      "source_key": "agentopsd_debug",
+      "url": "https://github.com/ZethWang/AgentOPSD/blob/master/verl/trainer/ppo/opsd_ray_trainer.py",
+      "sha256": "4833b87bc33fafbab995c524389c1727518d349f0446617c09c345c1b0d9a020",
+      "retrieved_raw_url": "https://raw.githubusercontent.com/ZethWang/AgentOPSD/master/verl/trainer/ppo/opsd_ray_trainer.py",
+      "bytes": 32112,
+      "entrypoint": "SAVE_CGTD_DEBUG=1 block",
+      "format": "JSONL at trainer.test_freq interval",
+      "fields": [
+        "global_step",
+        "sample_idx",
+        "turn_step",
+        "traj_uid",
+        "episode_reward",
+        "episode_length",
+        "seq_advantage",
+        "tokens",
+        "token_ids",
+        "gaps",
+        "teacher_log_probs",
+        "student_log_probs",
+        "token_advantages"
+      ],
+      "rules": [
+        "Rows with no valid response tokens are skipped",
+        "Six token vectors are filtered by response_mask before saving"
+      ],
+      "limitation": "No full-sequence positions, explicit final task/OPD masks, complete prompt, or top-k support"
+    },
+    {
+      "source_key": "uniopsd_metrics",
+      "url": "https://github.com/Zenghuang-Fu/Uniopsd/blob/master/verl/trainer/ppo/rlsd_ray_trainer.py",
+      "sha256": "ec0f168f6e93a494ad098873fe0200460502164635c099edd9db6d9eaa645f88",
+      "retrieved_raw_url": "https://raw.githubusercontent.com/Zenghuang-Fu/Uniopsd/master/verl/trainer/ppo/rlsd_ray_trainer.py",
+      "bytes": 89279,
+      "metric": "rlsd/opsd_rescue_frac",
+      "definition": "mean((outcome_step_credit == 0) & (fused_credit != 0)) over all rows",
+      "paired_coverage_metric": "rlsd/opsd_rescue_ceiling = mean(has_teacher & ~has_step)",
+      "limitation": "Credit fill-in fraction, not verified task rescue rate"
+    }
+  ]
+}

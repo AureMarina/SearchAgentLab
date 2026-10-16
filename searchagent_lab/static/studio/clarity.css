@@ -1,0 +1,18 @@
+/* Organization only. All colors and typography inherit the existing theme. */
+.ex-subtabs{display:flex;gap:6px;margin:0 0 18px;flex-wrap:wrap}.ex-subtabs[hidden]{display:none}
+.ex-subtabs .ex-tab{padding:7px 13px;font-size:13px;border:1px solid var(--s-border);border-radius:7px}
+.ex-method-links{display:flex;gap:15px;flex-wrap:wrap}.ex-method-links:empty{display:none}
+.ex-method-fold{margin-top:20px;border-top:1px solid var(--s-border);padding-top:12px}
+.ex-method-fold>summary{cursor:pointer;font-weight:600;font-size:14px;padding:8px 0}
+.cl-problem-cell{max-width:310px;min-width:170px;font-size:12px;line-height:1.6}.cl-problem-cell .s-badge{margin-right:5px}
+.cl-problem{border:1px solid var(--s-border);border-radius:8px;padding:12px 14px;margin:8px 0 14px;min-width:0}
+.cl-problem>summary{cursor:pointer;display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-size:13px}
+.cl-problem>summary strong{font-weight:500}.cl-problem-body{padding-top:12px;font-size:13px;line-height:1.7}
+.cl-problem-body textarea{width:100%;box-sizing:border-box;min-height:72px;margin:8px 0}
+.cl-problem-body .s-controls{margin-top:8px}.cl-problem-note{margin:8px 0;font-size:12px}
+.cl-training-empty{padding:12px 0;line-height:1.7}.cl-training-link{margin:8px 0}
+.cl-supervision{padding:10px 0}.cl-supervision pre{white-space:pre-wrap;overflow-wrap:anywhere;max-height:420px;overflow:auto}
+.cl-recorded-section{margin:12px 0}.cl-recorded-section h3{font-size:14px;margin:8px 0}
+.f-result-table tr.is-current{outline:1px solid var(--s-blue);outline-offset:-1px}
+.s-chart-grid:has(>.s-card:only-child){grid-template-columns:minmax(0,1fr)}
+@media(max-width:700px){.ex-subtabs{gap:4px}.ex-subtabs .ex-tab{padding:7px 9px}.cl-problem-cell{min-width:140px}}

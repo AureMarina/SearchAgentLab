@@ -1,0 +1,26 @@
+# Template only: create the service user, install the wheel and review paths first.
+[Unit]
+Description=SearchAgent Lab authenticated center
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=searchagent
+Group=searchagent
+WorkingDirectory=/srv/searchagent-lab
+UMask=0077
+Environment=PYTHONUNBUFFERED=1
+ExecStart=/opt/searchagent-lab/venv/bin/python -m searchagent_lab team-serve --data-dir /srv/searchagent-lab/center --port 8765 --public-origin https://lab.example.org
+Restart=on-failure
+RestartSec=5
+KillSignal=SIGINT
+TimeoutStopSec=150
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/srv/searchagent-lab
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,33 @@
+/* A visible research entry, with only the two evaluation contexts exposed. */
+.en-guide{padding:24px;margin:0 0 24px;background:var(--s-tint);border-color:var(--s-accent-line);border-radius:18px;min-width:0}
+.en-guide-head{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;margin-bottom:17px}
+.en-guide-head h2{font-size:21px;font-weight:600;line-height:1.5}
+.en-guide-head .s-badge{background:#fff;color:var(--s-blue)}
+.en-guide>.s-muted{margin:0 0 14px;line-height:1.8}
+.en-guide-splits{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.en-guide-splits>div{background:#fff;border:1px solid transparent;border-radius:13px;padding:18px 20px;min-width:0}
+.en-guide-splits strong{display:block;font-size:16px;font-weight:550;margin-bottom:7px;color:var(--s-ink)}
+.en-guide-splits p{font-size:14px;line-height:1.8;color:var(--s-ink-soft);overflow-wrap:anywhere}
+.en-guide-actions{margin-top:18px;gap:10px}
+.en-guide-actions .s-btn{min-height:37px}
+.en-guide-note{font-size:13px;color:var(--s-muted);line-height:1.8;margin:14px 0 0;overflow-wrap:anywhere}
+.en-pending{margin-top:18px}
+.en-pending>.s-btn{margin-top:2px}
+.en-integration{min-width:0;font-size:14px;line-height:1.8}
+.en-integration h3{font-size:18px;font-weight:600;margin:22px 0 9px}
+.en-integration h3:first-child{margin-top:0}
+.en-integration p{margin:9px 0;color:var(--s-ink-soft);overflow-wrap:anywhere}
+.en-integration pre{font:13px/1.8 var(--font-mono,ui-monospace,SFMono-Regular,Consolas,monospace);background:var(--s-soft);border:1px solid var(--s-border);border-radius:12px;padding:15px 17px;white-space:pre-wrap;overflow-wrap:anywhere;overflow:auto;max-width:100%;max-height:420px}
+.en-integration code{font-family:var(--font-mono,ui-monospace,SFMono-Regular,Consolas,monospace);font-size:13px}
+.en-integration details{margin:18px 0;border-top:1px solid var(--s-border);padding-top:14px}
+.en-integration details>summary{cursor:pointer;font-size:14px;color:var(--s-blue)}
+@media(max-width:700px){
+  .en-guide{padding:17px 15px;margin-bottom:20px;border-radius:15px}
+  .en-guide-head{gap:9px;margin-bottom:14px}
+  .en-guide-head h2{font-size:20px}
+  .en-guide-splits{grid-template-columns:1fr;gap:10px}
+  .en-guide-splits>div{padding:16px}
+  .en-guide-actions{align-items:stretch}
+  .en-guide-actions .s-btn{flex:1 1 auto;white-space:normal}
+  .en-integration pre{padding:12px;font-size:12px}
+}

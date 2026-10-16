@@ -1,0 +1,17 @@
+{
+  "id": "case-contract",
+  "version": "v1",
+  "name": "填写本题执行契约",
+  "risk": "normal",
+  "mode": "shadow",
+  "required_tools": [],
+  "forbidden_tools": [],
+  "required_skills": [],
+  "output": {
+    "format": "any"
+  },
+  "tool_schemas": {},
+  "assertions": [],
+  "hard_gates": [],
+  "notes": "历史轨迹回填是 retrospective；不反向改变原评测规则。参考推理链不是唯一路径。"
+}

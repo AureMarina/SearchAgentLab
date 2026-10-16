@@ -1,0 +1,57 @@
+{
+  "scorer": {
+    "name": "synthetic_casefold_em",
+    "version": "demo-v1",
+    "normalization": "strip + casefold; demonstration only"
+  },
+  "parser": {
+    "name": "recorded_final_answer",
+    "version": "demo-v1"
+  },
+  "retriever": {
+    "name": "synthetic-local-fixtures",
+    "index_sha256": "demo-index-v1",
+    "top_k": 3,
+    "corpus_version": "synthetic-fixtures-v2",
+    "version": "fixture-retriever-v2",
+    "ranking": "fixture order",
+    "truncation": {
+      "observation_tokens": 1024,
+      "rule": "fixed fixture text"
+    }
+  },
+  "budget": {
+    "max_tool_calls": 4,
+    "max_output_tokens": 2048,
+    "context_window": 8192
+  },
+  "decoding": {
+    "temperature": 0,
+    "top_p": 1
+  },
+  "harness_version": "synthetic-fixture-v1",
+  "seed": 42,
+  "protocol_version": 2,
+  "input": {
+    "prompt_sha256": "synthetic-prompt-v2",
+    "chat_template_sha256": "synthetic-template-v2",
+    "tokenizer_revision": "synthetic-tokenizer-v2",
+    "stop_conditions": [
+      "</answer>"
+    ]
+  },
+  "runtime": {
+    "backend": "synthetic-generator",
+    "backend_version": "2",
+    "hardware": "no GPU used",
+    "dtype": "no inference",
+    "batch_size": 1,
+    "determinism": "fixed fixture generation"
+  },
+  "mode": "inference_only",
+  "groundtruth_to_agent": false,
+  "state_reset": {
+    "per_question": true,
+    "between_evaluations": true
+  }
+}

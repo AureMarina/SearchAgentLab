@@ -1,0 +1,13 @@
+{
+  "dataset": ["dataset"],
+  "sample_id": ["id"],
+  "scores.em": ["scores", "em"],
+  "scores.f1": ["scores", "f1"],
+  "reward": ["reward"],
+  "raw_final_output": ["final_output"],
+  "parsed_answer": ["parsed_answer"],
+  "runtime_status": ["runtime_status"],
+  "termination_reason": ["termination_reason"],
+  "usage": ["usage"],
+  "steps": ["steps"]
+}

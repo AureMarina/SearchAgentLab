@@ -1,0 +1,58 @@
+{
+  "description": "Fill exact local manifests and immutable revisions for every project and all training/distillation/proposer/test material. This is NOT a completed isolation audit.",
+  "projects": [
+    "self-play",
+    "latent",
+    "entropy"
+  ],
+  "entries": [
+    {
+      "project_id": "self-play",
+      "role": "train",
+      "path": "REPLACE_ME/self-play_train.jsonl",
+      "revision": "unknown",
+      "declared_complete": false,
+      "description": "填写此清单覆盖的实际 SFT/RL/蒸馏/proposer/正式测试范围；无数据也须提供已核验的空清单"
+    },
+    {
+      "project_id": "self-play",
+      "role": "test",
+      "path": "REPLACE_ME/self-play_test.jsonl",
+      "revision": "unknown",
+      "declared_complete": false,
+      "description": "填写此清单覆盖的实际 SFT/RL/蒸馏/proposer/正式测试范围；无数据也须提供已核验的空清单"
+    },
+    {
+      "project_id": "latent",
+      "role": "train",
+      "path": "REPLACE_ME/latent_train.jsonl",
+      "revision": "unknown",
+      "declared_complete": false,
+      "description": "填写此清单覆盖的实际 SFT/RL/蒸馏/proposer/正式测试范围；无数据也须提供已核验的空清单"
+    },
+    {
+      "project_id": "latent",
+      "role": "test",
+      "path": "REPLACE_ME/latent_test.jsonl",
+      "revision": "unknown",
+      "declared_complete": false,
+      "description": "填写此清单覆盖的实际 SFT/RL/蒸馏/proposer/正式测试范围；无数据也须提供已核验的空清单"
+    },
+    {
+      "project_id": "entropy",
+      "role": "train",
+      "path": "REPLACE_ME/entropy_train.jsonl",
+      "revision": "unknown",
+      "declared_complete": false,
+      "description": "填写此清单覆盖的实际 SFT/RL/蒸馏/proposer/正式测试范围；无数据也须提供已核验的空清单"
+    },
+    {
+      "project_id": "entropy",
+      "role": "test",
+      "path": "REPLACE_ME/entropy_test.jsonl",
+      "revision": "unknown",
+      "declared_complete": false,
+      "description": "填写此清单覆盖的实际 SFT/RL/蒸馏/proposer/正式测试范围；无数据也须提供已核验的空清单"
+    }
+  ]
+}

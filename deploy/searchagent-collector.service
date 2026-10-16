@@ -1,0 +1,22 @@
+# Template only. Run as the same account that owns the local experiment logs.
+# /etc/searchagent-lab/collector.env: owner-readable only (0600), never commit it.
+[Unit]
+Description=SearchAgent Lab lightweight result collector
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=searchrunner
+WorkingDirectory=/srv/experiments
+UMask=0077
+Environment=PYTHONUNBUFFERED=1
+EnvironmentFile=/etc/searchagent-lab/collector.env
+ExecStart=/opt/searchagent-lab/venv/bin/python -m searchagent_lab team-watch --data-dir /srv/experiments/workspace --all --interval 30
+Restart=on-failure
+RestartSec=10
+KillSignal=SIGINT
+NoNewPrivileges=true
+
+[Install]
+WantedBy=multi-user.target

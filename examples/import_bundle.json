@@ -1,0 +1,848 @@
+{
+  "schema_version": 1,
+  "description": "All questions, traces and scores in this example are synthetic.",
+  "runs": [
+    {
+      "id": "example-run",
+      "name": "最小示例 · 合成数据",
+      "base_model": "No actual model loaded",
+      "algorithm": "Synthetic fixture",
+      "demo": true
+    }
+  ],
+  "panels": [
+    {
+      "id": "example-panel",
+      "name": "最小接入示例",
+      "version": "v1",
+      "split": "dev",
+      "demo": true,
+      "samples": [
+        {
+          "id": "synthetic-001",
+          "dataset": "HotpotQA",
+          "question": "In which city was the author of The Amber Tide 01 born?",
+          "answers": [
+            "Harborwick"
+          ],
+          "metadata": {
+            "synthetic": true,
+            "title": "The Amber Tide 01",
+            "author": "Mira Vale 01",
+            "city": "Harborwick",
+            "country": "Norland",
+            "hops": 2,
+            "reference_evidence": [
+              "The Amber Tide 01 was written by Mira Vale 01.",
+              "Mira Vale 01 was born in Harborwick.",
+              "Harborwick is located in Norland."
+            ]
+          }
+        },
+        {
+          "id": "synthetic-002",
+          "dataset": "MuSiQue",
+          "question": "Which country contains the birthplace of the author of Winter at Luma 02?",
+          "answers": [
+            "Veloria"
+          ],
+          "metadata": {
+            "synthetic": true,
+            "title": "Winter at Luma 02",
+            "author": "Nolan Finch 02",
+            "city": "Stoneharbor",
+            "country": "Veloria",
+            "hops": 3,
+            "reference_evidence": [
+              "Winter at Luma 02 was written by Nolan Finch 02.",
+              "Nolan Finch 02 was born in Stoneharbor.",
+              "Stoneharbor is located in Veloria."
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "metrics": [
+    {
+      "run_id": "example-run",
+      "step": 0,
+      "metrics": {
+        "train/loss": 1.0,
+        "train/reward": 0.1
+      }
+    },
+    {
+      "run_id": "example-run",
+      "step": 50,
+      "metrics": {
+        "train/loss": 0.6,
+        "train/reward": 0.3
+      }
+    },
+    {
+      "run_id": "example-run",
+      "step": 100,
+      "metrics": {
+        "train/loss": 0.3,
+        "train/reward": 0.5
+      }
+    }
+  ],
+  "checkpoints": [
+    {
+      "id": "example-cp-0",
+      "run_id": "example-run",
+      "step": 0,
+      "name": "checkpoint-0"
+    },
+    {
+      "id": "example-cp-100",
+      "run_id": "example-run",
+      "step": 100,
+      "name": "checkpoint-100"
+    }
+  ],
+  "evaluations": [
+    {
+      "id": "example-eval-0",
+      "checkpoint_id": "example-cp-0",
+      "panel_id": "example-panel",
+      "protocol": {
+        "scorer": {
+          "name": "synthetic_casefold_em",
+          "version": "demo-v1",
+          "normalization": "strip + casefold; demonstration only"
+        },
+        "parser": {
+          "name": "recorded_final_answer",
+          "version": "demo-v1"
+        },
+        "retriever": {
+          "name": "synthetic-local-fixtures",
+          "index_sha256": "demo-index-v1",
+          "top_k": 3
+        },
+        "budget": {
+          "max_tool_calls": 4,
+          "max_output_tokens": 2048,
+          "context_window": 8192
+        },
+        "decoding": {
+          "temperature": 0,
+          "top_p": 1
+        },
+        "harness_version": "synthetic-fixture-v1",
+        "seed": 42
+      }
+    },
+    {
+      "id": "example-eval-100",
+      "checkpoint_id": "example-cp-100",
+      "panel_id": "example-panel",
+      "protocol": {
+        "scorer": {
+          "name": "synthetic_casefold_em",
+          "version": "demo-v1",
+          "normalization": "strip + casefold; demonstration only"
+        },
+        "parser": {
+          "name": "recorded_final_answer",
+          "version": "demo-v1"
+        },
+        "retriever": {
+          "name": "synthetic-local-fixtures",
+          "index_sha256": "demo-index-v1",
+          "top_k": 3
+        },
+        "budget": {
+          "max_tool_calls": 4,
+          "max_output_tokens": 2048,
+          "context_window": 8192
+        },
+        "decoding": {
+          "temperature": 0,
+          "top_p": 1
+        },
+        "harness_version": "synthetic-fixture-v1",
+        "seed": 42
+      }
+    }
+  ],
+  "trajectories": [
+    {
+      "evaluation_id": "example-eval-0",
+      "dataset": "HotpotQA",
+      "sample_id": "synthetic-001",
+      "scores": {
+        "em": 0,
+        "f1": 0
+      },
+      "runtime_status": "ok",
+      "raw_final_output": "<answer>Eastford</answer>",
+      "parsed_answer": "Eastford",
+      "reward": 0.0,
+      "termination_reason": "final_answer",
+      "usage": {
+        "model_calls": 3,
+        "tool_calls": 2,
+        "latency_ms": 1569,
+        "input_tokens": 640,
+        "output_tokens": 213
+      },
+      "steps": [
+        {
+          "index": 0,
+          "kind": "model",
+          "title": "确定第一轮检索目标",
+          "input": [
+            {
+              "role": "system",
+              "content": "You are a search assistant. Use retrieved evidence to answer the question. Return a short final answer."
+            },
+            {
+              "role": "user",
+              "content": "In which city was the author of The Amber Tide 01 born?"
+            }
+          ],
+          "output": "I need to identify the author before looking up the birthplace.\n<search>\"The Amber Tide 01\" author</search>",
+          "latency_ms": 421,
+          "status": "ok",
+          "metadata": {
+            "fixture": true
+          }
+        },
+        {
+          "index": 1,
+          "kind": "tool",
+          "title": "检索作品作者",
+          "tool_call": {
+            "name": "search",
+            "arguments": {
+              "query": "\"The Amber Tide 01\" author"
+            }
+          },
+          "tool_response": {
+            "query": "\"The Amber Tide 01\" author",
+            "results": [
+              {
+                "rank": 1,
+                "doc_id": "fixture-book",
+                "title": "The Amber Tide 01",
+                "text": "The Amber Tide 01 was written by Mira Vale 01."
+              },
+              {
+                "rank": 2,
+                "doc_id": "fixture-review",
+                "title": "Book review",
+                "text": "A review of the work; no biographical information."
+              }
+            ],
+            "fixture": true
+          },
+          "model_visible": "[1] The Amber Tide 01\nThe Amber Tide 01 was written by Mira Vale 01.\n[2] Book review\nA review of the work; no biographical information.",
+          "latency_ms": 185,
+          "status": "ok"
+        },
+        {
+          "index": 2,
+          "kind": "model",
+          "title": "利用中间实体继续检索",
+          "input": [
+            {
+              "role": "system",
+              "content": "You are a search assistant. Use retrieved evidence to answer the question. Return a short final answer."
+            },
+            {
+              "role": "user",
+              "content": "In which city was the author of The Amber Tide 01 born?"
+            },
+            {
+              "role": "assistant",
+              "content": "I need to identify the author before looking up the birthplace.\n<search>\"The Amber Tide 01\" author</search>"
+            },
+            {
+              "role": "tool",
+              "content": "[1] The Amber Tide 01\nThe Amber Tide 01 was written by Mira Vale 01.\n[2] Book review\nA review of the work; no biographical information."
+            }
+          ],
+          "output": "The retrieved author is Mira Vale 01.\n<search>\"The Amber Tide 01\" publication city</search>",
+          "latency_ms": 389,
+          "status": "ok"
+        },
+        {
+          "index": 3,
+          "kind": "tool",
+          "title": "检索中间实体",
+          "tool_call": {
+            "name": "search",
+            "arguments": {
+              "query": "\"The Amber Tide 01\" publication city"
+            }
+          },
+          "tool_response": {
+            "query": "\"The Amber Tide 01\" publication city",
+            "results": [
+              {
+                "rank": 1,
+                "doc_id": "fixture-biography",
+                "title": "Publisher archive",
+                "text": "The book's first publisher was based in Eastford."
+              }
+            ],
+            "fixture": true
+          },
+          "latency_ms": 237,
+          "status": "ok",
+          "model_visible": "The book's first publisher was based in Eastford."
+        },
+        {
+          "index": 4,
+          "kind": "model",
+          "title": "汇总证据并输出答案",
+          "input": [
+            {
+              "role": "system",
+              "content": "You are a search assistant. Use retrieved evidence to answer the question. Return a short final answer."
+            },
+            {
+              "role": "user",
+              "content": "In which city was the author of The Amber Tide 01 born?"
+            },
+            {
+              "role": "assistant",
+              "content": "I need to identify the author before looking up the birthplace.\n<search>\"The Amber Tide 01\" author</search>"
+            },
+            {
+              "role": "tool",
+              "content": "[1] The Amber Tide 01\nThe Amber Tide 01 was written by Mira Vale 01.\n[2] Book review\nA review of the work; no biographical information."
+            },
+            {
+              "role": "assistant",
+              "content": "The retrieved author is Mira Vale 01.\n<search>\"The Amber Tide 01\" publication city</search>"
+            },
+            {
+              "role": "tool",
+              "content": "The book's first publisher was based in Eastford."
+            }
+          ],
+          "output": "<answer>Eastford</answer>",
+          "latency_ms": 337,
+          "status": "ok"
+        }
+      ],
+      "metadata": {
+        "synthetic": true,
+        "scoring_note": "All scores, input/output strings and timings are generated fixtures. Timeout explicitly scores zero in this DEMO protocol; the viewer never assigns a score itself."
+      }
+    },
+    {
+      "evaluation_id": "example-eval-0",
+      "dataset": "MuSiQue",
+      "sample_id": "synthetic-002",
+      "scores": {
+        "em": 1,
+        "f1": 1
+      },
+      "runtime_status": "ok",
+      "raw_final_output": "<answer>Veloria</answer>",
+      "parsed_answer": "Veloria",
+      "reward": 1.0,
+      "termination_reason": "final_answer",
+      "usage": {
+        "model_calls": 3,
+        "tool_calls": 2,
+        "latency_ms": 1569,
+        "input_tokens": 643,
+        "output_tokens": 213
+      },
+      "steps": [
+        {
+          "index": 0,
+          "kind": "model",
+          "title": "确定第一轮检索目标",
+          "input": [
+            {
+              "role": "system",
+              "content": "You are a search assistant. Use retrieved evidence to answer the question. Return a short final answer."
+            },
+            {
+              "role": "user",
+              "content": "Which country contains the birthplace of the author of Winter at Luma 02?"
+            }
+          ],
+          "output": "I need to identify the author before looking up the birthplace.\n<search>\"Winter at Luma 02\" author</search>",
+          "latency_ms": 421,
+          "status": "ok",
+          "metadata": {
+            "fixture": true
+          }
+        },
+        {
+          "index": 1,
+          "kind": "tool",
+          "title": "检索作品作者",
+          "tool_call": {
+            "name": "search",
+            "arguments": {
+              "query": "\"Winter at Luma 02\" author"
+            }
+          },
+          "tool_response": {
+            "query": "\"Winter at Luma 02\" author",
+            "results": [
+              {
+                "rank": 1,
+                "doc_id": "fixture-book",
+                "title": "Winter at Luma 02",
+                "text": "Winter at Luma 02 was written by Nolan Finch 02."
+              },
+              {
+                "rank": 2,
+                "doc_id": "fixture-review",
+                "title": "Book review",
+                "text": "A review of the work; no biographical information."
+              }
+            ],
+            "fixture": true
+          },
+          "model_visible": "[1] Winter at Luma 02\nWinter at Luma 02 was written by Nolan Finch 02.\n[2] Book review\nA review of the work; no biographical information.",
+          "latency_ms": 185,
+          "status": "ok"
+        },
+        {
+          "index": 2,
+          "kind": "model",
+          "title": "利用中间实体继续检索",
+          "input": [
+            {
+              "role": "system",
+              "content": "You are a search assistant. Use retrieved evidence to answer the question. Return a short final answer."
+            },
+            {
+              "role": "user",
+              "content": "Which country contains the birthplace of the author of Winter at Luma 02?"
+            },
+            {
+              "role": "assistant",
+              "content": "I need to identify the author before looking up the birthplace.\n<search>\"Winter at Luma 02\" author</search>"
+            },
+            {
+              "role": "tool",
+              "content": "[1] Winter at Luma 02\nWinter at Luma 02 was written by Nolan Finch 02.\n[2] Book review\nA review of the work; no biographical information."
+            }
+          ],
+          "output": "The retrieved author is Nolan Finch 02.\n<search>\"Nolan Finch 02\" birthplace</search>",
+          "latency_ms": 389,
+          "status": "ok"
+        },
+        {
+          "index": 3,
+          "kind": "tool",
+          "title": "检索中间实体",
+          "tool_call": {
+            "name": "search",
+            "arguments": {
+              "query": "\"Nolan Finch 02\" birthplace"
+            }
+          },
+          "tool_response": {
+            "query": "\"Nolan Finch 02\" birthplace",
+            "results": [
+              {
+                "rank": 1,
+                "doc_id": "fixture-biography",
+                "title": "Nolan Finch 02",
+                "text": "Nolan Finch 02 was born in Stoneharbor. Stoneharbor is located in Veloria."
+              }
+            ],
+            "fixture": true
+          },
+          "latency_ms": 237,
+          "status": "ok",
+          "model_visible": "Nolan Finch 02 was born in Stoneharbor. Stoneharbor is located in Veloria."
+        },
+        {
+          "index": 4,
+          "kind": "model",
+          "title": "汇总证据并输出答案",
+          "input": [
+            {
+              "role": "system",
+              "content": "You are a search assistant. Use retrieved evidence to answer the question. Return a short final answer."
+            },
+            {
+              "role": "user",
+              "content": "Which country contains the birthplace of the author of Winter at Luma 02?"
+            },
+            {
+              "role": "assistant",
+              "content": "I need to identify the author before looking up the birthplace.\n<search>\"Winter at Luma 02\" author</search>"
+            },
+            {
+              "role": "tool",
+              "content": "[1] Winter at Luma 02\nWinter at Luma 02 was written by Nolan Finch 02.\n[2] Book review\nA review of the work; no biographical information."
+            },
+            {
+              "role": "assistant",
+              "content": "The retrieved author is Nolan Finch 02.\n<search>\"Nolan Finch 02\" birthplace</search>"
+            },
+            {
+              "role": "tool",
+              "content": "Nolan Finch 02 was born in Stoneharbor. Stoneharbor is located in Veloria."
+            }
+          ],
+          "output": "<answer>Veloria</answer>",
+          "latency_ms": 337,
+          "status": "ok"
+        }
+      ],
+      "metadata": {
+        "synthetic": true,
+        "scoring_note": "All scores, input/output strings and timings are generated fixtures. Timeout explicitly scores zero in this DEMO protocol; the viewer never assigns a score itself."
+      }
+    },
+    {
+      "evaluation_id": "example-eval-100",
+      "dataset": "HotpotQA",
+      "sample_id": "synthetic-001",
+      "scores": {
+        "em": 1,
+        "f1": 1
+      },
+      "runtime_status": "ok",
+      "raw_final_output": "<answer>Harborwick</answer>",
+      "parsed_answer": "Harborwick",
+      "reward": 1.0,
+      "termination_reason": "final_answer",
+      "usage": {
+        "model_calls": 3,
+        "tool_calls": 2,
+        "latency_ms": 1569,
+        "input_tokens": 640,
+        "output_tokens": 213
+      },
+      "steps": [
+        {
+          "index": 0,
+          "kind": "model",
+          "title": "确定第一轮检索目标",
+          "input": [
+            {
+              "role": "system",
+              "content": "You are a search assistant. Use retrieved evidence to answer the question. Return a short final answer."
+            },
+            {
+              "role": "user",
+              "content": "In which city was the author of The Amber Tide 01 born?"
+            }
+          ],
+          "output": "I need to identify the author before looking up the birthplace.\n<search>\"The Amber Tide 01\" author</search>",
+          "latency_ms": 421,
+          "status": "ok",
+          "metadata": {
+            "fixture": true
+          }
+        },
+        {
+          "index": 1,
+          "kind": "tool",
+          "title": "检索作品作者",
+          "tool_call": {
+            "name": "search",
+            "arguments": {
+              "query": "\"The Amber Tide 01\" author"
+            }
+          },
+          "tool_response": {
+            "query": "\"The Amber Tide 01\" author",
+            "results": [
+              {
+                "rank": 1,
+                "doc_id": "fixture-book",
+                "title": "The Amber Tide 01",
+                "text": "The Amber Tide 01 was written by Mira Vale 01."
+              },
+              {
+                "rank": 2,
+                "doc_id": "fixture-review",
+                "title": "Book review",
+                "text": "A review of the work; no biographical information."
+              }
+            ],
+            "fixture": true
+          },
+          "model_visible": "[1] The Amber Tide 01\nThe Amber Tide 01 was written by Mira Vale 01.\n[2] Book review\nA review of the work; no biographical information.",
+          "latency_ms": 185,
+          "status": "ok"
+        },
+        {
+          "index": 2,
+          "kind": "model",
+          "title": "利用中间实体继续检索",
+          "input": [
+            {
+              "role": "system",
+              "content": "You are a search assistant. Use retrieved evidence to answer the question. Return a short final answer."
+            },
+            {
+              "role": "user",
+              "content": "In which city was the author of The Amber Tide 01 born?"
+            },
+            {
+              "role": "assistant",
+              "content": "I need to identify the author before looking up the birthplace.\n<search>\"The Amber Tide 01\" author</search>"
+            },
+            {
+              "role": "tool",
+              "content": "[1] The Amber Tide 01\nThe Amber Tide 01 was written by Mira Vale 01.\n[2] Book review\nA review of the work; no biographical information."
+            }
+          ],
+          "output": "The retrieved author is Mira Vale 01.\n<search>\"Mira Vale 01\" birthplace</search>",
+          "latency_ms": 389,
+          "status": "ok"
+        },
+        {
+          "index": 3,
+          "kind": "tool",
+          "title": "检索中间实体",
+          "tool_call": {
+            "name": "search",
+            "arguments": {
+              "query": "\"Mira Vale 01\" birthplace"
+            }
+          },
+          "tool_response": {
+            "query": "\"Mira Vale 01\" birthplace",
+            "results": [
+              {
+                "rank": 1,
+                "doc_id": "fixture-biography",
+                "title": "Mira Vale 01",
+                "text": "Mira Vale 01 was born in Harborwick. Harborwick is located in Norland."
+              }
+            ],
+            "fixture": true
+          },
+          "latency_ms": 237,
+          "status": "ok",
+          "model_visible": "Mira Vale 01 was born in Harborwick. Harborwick is located in Norland."
+        },
+        {
+          "index": 4,
+          "kind": "model",
+          "title": "汇总证据并输出答案",
+          "input": [
+            {
+              "role": "system",
+              "content": "You are a search assistant. Use retrieved evidence to answer the question. Return a short final answer."
+            },
+            {
+              "role": "user",
+              "content": "In which city was the author of The Amber Tide 01 born?"
+            },
+            {
+              "role": "assistant",
+              "content": "I need to identify the author before looking up the birthplace.\n<search>\"The Amber Tide 01\" author</search>"
+            },
+            {
+              "role": "tool",
+              "content": "[1] The Amber Tide 01\nThe Amber Tide 01 was written by Mira Vale 01.\n[2] Book review\nA review of the work; no biographical information."
+            },
+            {
+              "role": "assistant",
+              "content": "The retrieved author is Mira Vale 01.\n<search>\"Mira Vale 01\" birthplace</search>"
+            },
+            {
+              "role": "tool",
+              "content": "Mira Vale 01 was born in Harborwick. Harborwick is located in Norland."
+            }
+          ],
+          "output": "<answer>Harborwick</answer>",
+          "latency_ms": 337,
+          "status": "ok"
+        }
+      ],
+      "metadata": {
+        "synthetic": true,
+        "scoring_note": "All scores, input/output strings and timings are generated fixtures. Timeout explicitly scores zero in this DEMO protocol; the viewer never assigns a score itself."
+      }
+    },
+    {
+      "evaluation_id": "example-eval-100",
+      "dataset": "MuSiQue",
+      "sample_id": "synthetic-002",
+      "scores": {
+        "em": 1,
+        "f1": 1
+      },
+      "runtime_status": "ok",
+      "raw_final_output": "<answer>Veloria</answer>",
+      "parsed_answer": "Veloria",
+      "reward": 1.0,
+      "termination_reason": "final_answer",
+      "usage": {
+        "model_calls": 3,
+        "tool_calls": 2,
+        "latency_ms": 1569,
+        "input_tokens": 643,
+        "output_tokens": 213
+      },
+      "steps": [
+        {
+          "index": 0,
+          "kind": "model",
+          "title": "确定第一轮检索目标",
+          "input": [
+            {
+              "role": "system",
+              "content": "You are a search assistant. Use retrieved evidence to answer the question. Return a short final answer."
+            },
+            {
+              "role": "user",
+              "content": "Which country contains the birthplace of the author of Winter at Luma 02?"
+            }
+          ],
+          "output": "I need to identify the author before looking up the birthplace.\n<search>\"Winter at Luma 02\" author</search>",
+          "latency_ms": 421,
+          "status": "ok",
+          "metadata": {
+            "fixture": true
+          }
+        },
+        {
+          "index": 1,
+          "kind": "tool",
+          "title": "检索作品作者",
+          "tool_call": {
+            "name": "search",
+            "arguments": {
+              "query": "\"Winter at Luma 02\" author"
+            }
+          },
+          "tool_response": {
+            "query": "\"Winter at Luma 02\" author",
+            "results": [
+              {
+                "rank": 1,
+                "doc_id": "fixture-book",
+                "title": "Winter at Luma 02",
+                "text": "Winter at Luma 02 was written by Nolan Finch 02."
+              },
+              {
+                "rank": 2,
+                "doc_id": "fixture-review",
+                "title": "Book review",
+                "text": "A review of the work; no biographical information."
+              }
+            ],
+            "fixture": true
+          },
+          "model_visible": "[1] Winter at Luma 02\nWinter at Luma 02 was written by Nolan Finch 02.\n[2] Book review\nA review of the work; no biographical information.",
+          "latency_ms": 185,
+          "status": "ok"
+        },
+        {
+          "index": 2,
+          "kind": "model",
+          "title": "利用中间实体继续检索",
+          "input": [
+            {
+              "role": "system",
+              "content": "You are a search assistant. Use retrieved evidence to answer the question. Return a short final answer."
+            },
+            {
+              "role": "user",
+              "content": "Which country contains the birthplace of the author of Winter at Luma 02?"
+            },
+            {
+              "role": "assistant",
+              "content": "I need to identify the author before looking up the birthplace.\n<search>\"Winter at Luma 02\" author</search>"
+            },
+            {
+              "role": "tool",
+              "content": "[1] Winter at Luma 02\nWinter at Luma 02 was written by Nolan Finch 02.\n[2] Book review\nA review of the work; no biographical information."
+            }
+          ],
+          "output": "The retrieved author is Nolan Finch 02.\n<search>\"Nolan Finch 02\" birthplace</search>",
+          "latency_ms": 389,
+          "status": "ok"
+        },
+        {
+          "index": 3,
+          "kind": "tool",
+          "title": "检索中间实体",
+          "tool_call": {
+            "name": "search",
+            "arguments": {
+              "query": "\"Nolan Finch 02\" birthplace"
+            }
+          },
+          "tool_response": {
+            "query": "\"Nolan Finch 02\" birthplace",
+            "results": [
+              {
+                "rank": 1,
+                "doc_id": "fixture-biography",
+                "title": "Nolan Finch 02",
+                "text": "Nolan Finch 02 was born in Stoneharbor. Stoneharbor is located in Veloria."
+              }
+            ],
+            "fixture": true
+          },
+          "latency_ms": 237,
+          "status": "ok",
+          "model_visible": "Nolan Finch 02 was born in Stoneharbor. Stoneharbor is located in Veloria."
+        },
+        {
+          "index": 4,
+          "kind": "model",
+          "title": "汇总证据并输出答案",
+          "input": [
+            {
+              "role": "system",
+              "content": "You are a search assistant. Use retrieved evidence to answer the question. Return a short final answer."
+            },
+            {
+              "role": "user",
+              "content": "Which country contains the birthplace of the author of Winter at Luma 02?"
+            },
+            {
+              "role": "assistant",
+              "content": "I need to identify the author before looking up the birthplace.\n<search>\"Winter at Luma 02\" author</search>"
+            },
+            {
+              "role": "tool",
+              "content": "[1] Winter at Luma 02\nWinter at Luma 02 was written by Nolan Finch 02.\n[2] Book review\nA review of the work; no biographical information."
+            },
+            {
+              "role": "assistant",
+              "content": "The retrieved author is Nolan Finch 02.\n<search>\"Nolan Finch 02\" birthplace</search>"
+            },
+            {
+              "role": "tool",
+              "content": "Nolan Finch 02 was born in Stoneharbor. Stoneharbor is located in Veloria."
+            }
+          ],
+          "output": "<answer>Veloria</answer>",
+          "latency_ms": 337,
+          "status": "ok"
+        }
+      ],
+      "metadata": {
+        "synthetic": true,
+        "scoring_note": "All scores, input/output strings and timings are generated fixtures. Timeout explicitly scores zero in this DEMO protocol; the viewer never assigns a score itself."
+      }
+    }
+  ],
+  "finish_evaluations": [
+    {
+      "id": "example-eval-0",
+      "status": "completed"
+    },
+    {
+      "id": "example-eval-100",
+      "status": "completed"
+    }
+  ]
+}

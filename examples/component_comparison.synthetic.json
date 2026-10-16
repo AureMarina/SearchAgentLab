@@ -1,0 +1,24 @@
+{
+  "operation": "context_render",
+  "input": [
+    {
+      "title": "Short profile",
+      "text": "A fictional profile describes a researcher, but does not say where they work."
+    },
+    {
+      "title": "Workplace notes",
+      "text": "The fictional researcher works at Copper Harbor."
+    }
+  ],
+  "baseline": {
+    "max_chars": 120,
+    "max_documents": 1,
+    "selection": "first"
+  },
+  "candidate": {
+    "max_chars": 120,
+    "max_documents": 1,
+    "selection": "last"
+  },
+  "demo": true
+}

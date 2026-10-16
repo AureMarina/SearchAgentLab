@@ -1,0 +1,32 @@
+{
+  "schema": "searchagent_lab.workspace_defaults",
+  "version": 1,
+  "registry_id": "audited_20261009",
+  "description": "Audited presentation migration for the supplied 2026-10-09 workspace. Both project_id and experiment_id must match exactly. Names are never used to infer a research family. Explicit presentation records override this registry; frozen profiles and ownership remain unchanged.",
+  "entries": [
+    {
+      "project_id": "native-qwen-searchqa",
+      "experiment_id": "native-qwen3-8b-sevenqa-20261009",
+      "family": "baseline",
+      "is_baseline": true
+    },
+    {
+      "project_id": "distillation",
+      "experiment_id": "sdar-searchqa-4b-reproduction",
+      "family": "self_distillation",
+      "is_baseline": false
+    },
+    {
+      "project_id": "uniopsd-searchqa",
+      "experiment_id": "uniopsd-qwen3-4b-reproduction",
+      "family": "self_distillation",
+      "is_baseline": false
+    },
+    {
+      "project_id": "skillrl-searchqa",
+      "experiment_id": "skillrl-qwen3-4b-reproduction",
+      "family": "skill",
+      "is_baseline": false
+    }
+  ]
+}

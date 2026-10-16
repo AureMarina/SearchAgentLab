@@ -1,0 +1,28 @@
+# Template in nginx http{} context. Replace hostname and existing TLS cert paths.
+# Not installed/tested on your server. Review gateway limits and disk quotas.
+limit_req_zone $binary_remote_addr zone=searchagent_rate:10m rate=10r/s;
+limit_conn_zone $binary_remote_addr zone=searchagent_connections:10m;
+server {
+    listen 443 ssl;
+    server_name lab.example.org;
+    ssl_certificate /etc/letsencrypt/live/lab.example.org/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/lab.example.org/privkey.pem;
+    ssl_protocols TLSv1.2 TLSv1.3;
+    client_max_body_size 128m;
+    client_body_timeout 120s;
+    limit_conn searchagent_connections 8;
+    limit_req zone=searchagent_rate burst=30 nodelay;
+    location / {
+        proxy_pass http://127.0.0.1:8765;
+        proxy_set_header Host $http_host;
+        proxy_set_header Connection close;
+        proxy_http_version 1.0;
+        proxy_request_buffering on;
+        proxy_read_timeout 150s;
+        proxy_send_timeout 150s;
+        proxy_next_upstream off;
+        proxy_cache off;
+    }
+}
+# No HTTP redirect endpoint is required for clients: they must submit to HTTPS
+# directly. Never log Authorization, Cookie, request bodies or uploaded configs.

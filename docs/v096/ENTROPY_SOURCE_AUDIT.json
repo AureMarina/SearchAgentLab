@@ -1,0 +1,199 @@
+{
+  "format": "entropy-source-audit-v1",
+  "reviewed_on": "2026-10-10",
+  "scope": "Bounded primary-source file audit; no training/model execution, no reproduction scores.",
+  "sources": {
+    "verl_torch": {
+      "url": "https://raw.githubusercontent.com/verl-project/verl/main/verl/utils/torch_functional.py",
+      "bytes": 40526,
+      "sha256": "bc7ff798e2f5c06e0121668490739814efc519ff66d4d7dd7c8fc40b4840eb03",
+      "status": "read",
+      "symbols": [
+        "entropy_from_logits",
+        "entropy_from_logits_with_chunking"
+      ],
+      "findings": [
+        "Computes full-vocabulary Shannon entropy from supplied logits with natural logs. This function does not itself declare the actual scoring temperature or sampling truncation."
+      ],
+      "adapter": "Definition template only; no torch/model execution in Lab.",
+      "actual_experiment_producer_revision": "unknown unless explicitly supplied by caller",
+      "reviewed_on": "2026-10-10",
+      "browser_url": "https://github.com/verl-project/verl/blob/main/verl/utils/torch_functional.py"
+    },
+    "verl_actor": {
+      "url": "https://raw.githubusercontent.com/verl-project/verl/main/verl/workers/actor/dp_actor.py",
+      "status": "unavailable",
+      "error": "HTTP Error 404: Not Found",
+      "findings": [
+        "Previous actor path is absent at reviewed main. Current FSDP engine and trainer paths were audited instead."
+      ],
+      "adapter": "No support claim for the unavailable file.",
+      "actual_experiment_producer_revision": "unknown unless explicitly supplied by caller",
+      "reviewed_on": "2026-10-10",
+      "browser_url": "https://github.com/verl-project/verl/blob/main/verl/workers/actor/dp_actor.py"
+    },
+    "verl_fsdp": {
+      "url": "https://raw.githubusercontent.com/verl-project/verl/main/verl/workers/engine/fsdp/transformer_impl.py",
+      "bytes": 78010,
+      "sha256": "717b595c729469bde375234710b967e5b4a8d39ba93419f7b2a380f080483842",
+      "status": "read",
+      "symbols": [
+        "_scale_logits_by_temperature",
+        "prepare_model_inputs",
+        "prepare_model_outputs"
+      ],
+      "findings": [
+        "Relevant forward path scales logits by supplied temperature before entropy calculation. Model entropy at these logits does not imply entropy of the post top-p/top-k sampling distribution."
+      ],
+      "adapter": "Actual runtime temperature/support must be supplied by producer.",
+      "actual_experiment_producer_revision": "unknown unless explicitly supplied by caller",
+      "reviewed_on": "2026-10-10",
+      "browser_url": "https://github.com/verl-project/verl/blob/main/verl/workers/engine/fsdp/transformer_impl.py"
+    },
+    "verl_trainer": {
+      "url": "https://raw.githubusercontent.com/verl-project/verl/main/verl/trainer/ppo/ray_trainer.py",
+      "bytes": 91036,
+      "sha256": "eb41f99ccc66976eab14ebe35aa1aa5b7318e02469240ef1569ac4c884c94312",
+      "status": "read",
+      "symbols": [
+        "_compute_old_log_prob",
+        "_update_actor",
+        "fit"
+      ],
+      "findings": [
+        "Records actor/entropy after agg_loss using response_mask and configured loss_agg_mode/loss_scale_factor. Then removes entropys from old_log_prob batch. calculate_entropy and entropy_coeff control calculation but do not prove recorded samples completed an update."
+      ],
+      "adapter": "Saved logger dictionary or JSONL wrapper; no token reconstruction.",
+      "actual_experiment_producer_revision": "unknown unless explicitly supplied by caller",
+      "reviewed_on": "2026-10-10",
+      "browser_url": "https://github.com/verl-project/verl/blob/main/verl/trainer/ppo/ray_trainer.py"
+    },
+    "seal_draw_token": {
+      "url": "https://raw.githubusercontent.com/WindyLee0822/SEAL/main/draw_token.py",
+      "bytes": 11338,
+      "sha256": "4f2a1e5edea26492653fe4d67e02a791456c730ddb1c310fd9e192ddc41b5b7e",
+      "status": "read",
+      "symbols": [
+        "score_text",
+        "compare_scores",
+        "write_html"
+      ],
+      "findings": [
+        "Returns input_ids, token_texts, obs_logprob, obs_prob, entropy for teacher-forced continuation positions. Next-token logits are shifted and unscaled in this source. compare_scores checks token IDs before comparing. Standard script writes HTML; returned arrays need explicit serialization."
+      ],
+      "adapter": "Explicit saved return-object adapter, not a claim of native JSONL export.",
+      "actual_experiment_producer_revision": "unknown unless explicitly supplied by caller",
+      "reviewed_on": "2026-10-10",
+      "browser_url": "https://github.com/WindyLee0822/SEAL/blob/main/draw_token.py"
+    },
+    "ragen_collapse": {
+      "url": "https://raw.githubusercontent.com/mll-lab-nu/RAGEN/main/ragen/trainer/collapse_metrics.py",
+      "bytes": 34649,
+      "sha256": "7f8cdd8aca3fe5be679ec20c6b096c799d3b020e29b6ddea900a88b12a8bd69b",
+      "status": "read",
+      "symbols": [
+        "compute_collapse_metrics",
+        "_compute_cross_log_probs",
+        "_compute_log_prob_stats",
+        "_compute_mi_estimate",
+        "_compute_retrieval_accuracy"
+      ],
+      "findings": [
+        "Length-normalized and sequence-summed reasoning log-probability matrices are maintained separately. MI proxy uses a finite mixture across prompt columns. Signed MI samples are retained. Retrieval identifies the original prompt, with prompt-signature handling, rather than evidence retrieval. Metrics are namespaced by first-turn or trajectory sampling."
+      ],
+      "adapter": "Reads actual namespaced metric dictionaries; normalized probe rows needed to retain cross-score matrix/protocol.",
+      "actual_experiment_producer_revision": "unknown unless explicitly supplied by caller",
+      "reviewed_on": "2026-10-10",
+      "browser_url": "https://github.com/mll-lab-nu/RAGEN/blob/main/ragen/trainer/collapse_metrics.py"
+    },
+    "ragen_mi_docs": {
+      "url": "https://raw.githubusercontent.com/mll-lab-nu/RAGEN/main/docs/reference_mutual_information_metrics.md",
+      "bytes": 21864,
+      "sha256": "46a430010971512c7827463974d7f5431d22bc38223d766a015fd1e4464198d4",
+      "status": "read",
+      "findings": [
+        "Documents sampled reasoning/prompt cross-scoring, scope-specific names, normalization, prompt identification and coverage boundaries."
+      ],
+      "adapter": "Protocol reference; no MI inference or Search replication performed.",
+      "actual_experiment_producer_revision": "unknown unless explicitly supplied by caller",
+      "reviewed_on": "2026-10-10",
+      "browser_url": "https://github.com/mll-lab-nu/RAGEN/blob/main/docs/reference_mutual_information_metrics.md"
+    },
+    "arpo_branch": {
+      "url": "https://raw.githubusercontent.com/RUC-NLPIR/ARPO/main/ARPO/verl_arpo_entropy/verl/workers/rollout/vllm_rollout/vllm_rollout_with_tools.py",
+      "bytes": 32161,
+      "sha256": "8497a5eb1d10cf8772430f1eaf9faea8679126a6378bf5f484162345ca083da7",
+      "status": "read",
+      "symbols": [
+        "_calc_entropy",
+        "generate_sequences"
+      ],
+      "findings": [
+        "Requests logprobs=10. Collects returned candidates for up to first 20 generated positions, accumulates -p ln p and divides by ln(vocabulary size); does not average over positions or reconstruct the vocabulary tail. current_entropy_dict is internal. Exported meta_info.metrics in this file contains tool metrics. Empty candidates produce an internal zero fallback."
+      ],
+      "adapter": "Explicit normalized producer-hook rows; no universal native entropy JSON export inferred.",
+      "actual_experiment_producer_revision": "unknown unless explicitly supplied by caller",
+      "reviewed_on": "2026-10-10",
+      "browser_url": "https://github.com/RUC-NLPIR/ARPO/blob/main/ARPO/verl_arpo_entropy/verl/workers/rollout/vllm_rollout/vllm_rollout_with_tools.py"
+    },
+    "ssrl_search": {
+      "url": "https://raw.githubusercontent.com/TsinghuaC3I/SSRL/main/llm_agent/generation.py",
+      "bytes": 45097,
+      "sha256": "480b919cd789134e890360a92670e2d389e90809857d53ee62160df918234f79",
+      "status": "read",
+      "symbols": [
+        "_calculate_search_entropy",
+        "_should_use_real_search"
+      ],
+      "findings": [
+        "Locates the first search query by text/token boundaries; averages -p_sample log2 p_sample over sampled-token probabilities clamped to [1e-10,1]. Not full-vocabulary entropy and not sampled surprisal. Missing tag or unsupported span returns zero internally."
+      ],
+      "adapter": "Explicit normalized hook rows with support flags; preserve fallback zero separately from uninterpretable measurement.",
+      "actual_experiment_producer_revision": "unknown unless explicitly supplied by caller",
+      "reviewed_on": "2026-10-10",
+      "browser_url": "https://github.com/TsinghuaC3I/SSRL/blob/main/llm_agent/generation.py"
+    },
+    "polygraph_risk": {
+      "url": "https://raw.githubusercontent.com/IINemo/lm-polygraph/main/src/lm_polygraph/ue_metrics/risk_cov_curve.py",
+      "bytes": 1440,
+      "sha256": "f460316f05041c2d3f4e2c4eb7b8ab5be4bdbafbc09671e3775f37943b2199f4",
+      "status": "read",
+      "symbols": [
+        "RiskCoverageCurveAUC.__call__"
+      ],
+      "findings": [
+        "Normalizes target then forms 1-target risk, sorts uncertainty ascending using stable input order, and averages prefix risk (default normalize=True). Tied scores can depend on input ordering."
+      ],
+      "adapter": "Research reference; Lab defines binary-error tie-expected AURC explicitly rather than claiming byte-equivalent reproduction.",
+      "actual_experiment_producer_revision": "unknown unless explicitly supplied by caller",
+      "reviewed_on": "2026-10-10",
+      "browser_url": "https://github.com/IINemo/lm-polygraph/blob/main/src/lm_polygraph/ue_metrics/risk_cov_curve.py"
+    },
+    "polygraph_auc": {
+      "url": "https://raw.githubusercontent.com/IINemo/lm-polygraph/main/src/lm_polygraph/ue_metrics/roc_auc.py",
+      "bytes": 816,
+      "sha256": "e7509ec868458e3eab1738ff1c46c0792a493649b26d9171acda8ab960baac40",
+      "status": "read",
+      "symbols": [
+        "ROCAUC.__call__"
+      ],
+      "findings": [
+        "Marked is_ood_metric=True, forwards target and estimator to sklearn roc_auc_score after missing/inf preprocessing. Positive-class meaning comes from target."
+      ],
+      "adapter": "Lab error AUROC uses formal EM error=1 explicitly; OOD labels are not inferred.",
+      "actual_experiment_producer_revision": "unknown unless explicitly supplied by caller",
+      "reviewed_on": "2026-10-10",
+      "browser_url": "https://github.com/IINemo/lm-polygraph/blob/main/src/lm_polygraph/ue_metrics/roc_auc.py"
+    }
+  },
+  "not_upstream_outputs": [
+    "Lab normalized entropy observation/probe JSONL",
+    "Serialized SEAL return arrays if not explicitly exported",
+    "Per-token veRL entropy when only actor/entropy aggregate was logged"
+  ],
+  "boundaries": [
+    "Reviewed file hashes identify audited public source bytes, not the revision that produced a user experiment.",
+    "No source defaults fill missing actual temperature, tokenizer, masks, prefix, sample identity or costs.",
+    "No full logits, future information or labels are invented from scalar entropy."
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "method_schema": "method-evidence-v1",
+  "description": "Replace IDs and data with actual saved records. Not a real experiment.",
+  "objects": [
+    {
+      "id": "replace-with-actual-bank-version",
+      "kind": "skill_bank",
+      "version": "replace-version",
+      "usage": "unknown",
+      "data": {
+        "general_skills": [],
+        "query_type_skills": {},
+        "common_mistakes": []
+      }
+    }
+  ]
+}

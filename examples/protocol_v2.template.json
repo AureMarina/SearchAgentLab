@@ -1,0 +1,51 @@
+{
+  "schema_version": 2,
+  "mode": "inference_only",
+  "groundtruth_to_agent": false,
+  "input": {
+    "prompt_sha256": "unknown",
+    "chat_template_sha256": "unknown",
+    "tokenizer_revision": "unknown",
+    "stop_conditions": "unknown"
+  },
+  "scorer": {
+    "name": "unknown",
+    "version": "unknown"
+  },
+  "parser": {
+    "name": "unknown",
+    "version": "unknown"
+  },
+  "retriever": {
+    "corpus_version": "unknown",
+    "index_sha256": "unknown",
+    "version": "unknown",
+    "top_k": "unknown",
+    "ranking": "unknown",
+    "truncation": "unknown"
+  },
+  "budget": {
+    "max_tool_calls": "unknown",
+    "max_output_tokens": "unknown",
+    "context_window": "unknown"
+  },
+  "decoding": {
+    "temperature": "unknown",
+    "top_p": "unknown"
+  },
+  "harness_version": "unknown",
+  "seed": "unknown",
+  "runtime": {
+    "backend": "unknown",
+    "backend_version": "unknown",
+    "hardware": "unknown",
+    "dtype": "unknown",
+    "batch_size": "unknown",
+    "determinism": "unknown"
+  },
+  "state_reset": {
+    "per_question": true,
+    "between_evaluations": true
+  },
+  "description": "TEMPLATE: replace unknowns with settings actually used; reset/inference/no-groundtruth are required contract declarations, not execution proof."
+}
